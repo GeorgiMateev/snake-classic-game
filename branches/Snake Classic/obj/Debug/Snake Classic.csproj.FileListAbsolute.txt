@@ -1,1 +1,0 @@
-D:\Informacionni tehnologii\C#_Projects\Snake Classic\Snake Classic\obj\Debug\ResolveAssemblyReference.cache
