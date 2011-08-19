@@ -9,7 +9,7 @@ namespace Snake_Classic
         Left,Right,Up,Down
     }
 
-    class Snake
+    public class Snake
     {
         Directions direction;
         Queue<SnakeFragment> snakeBody;
@@ -23,6 +23,8 @@ namespace Snake_Classic
         public Snake()
         {
             Direction = Directions.Left;
+
+            
         }
         
     }
@@ -48,6 +50,11 @@ namespace Snake_Classic
             this.Row = row;
             this.Col = col;
             PutIntoMatrix(this.Row, this.Col);
+        }
+
+        private void PutIntoMatrix(int row, int col)
+        {
+            throw new NotImplementedException();
         }
 
         
