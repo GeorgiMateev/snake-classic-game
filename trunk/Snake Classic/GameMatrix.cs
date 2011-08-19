@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Snake_Classic
 {
-    class GameMatrix
+    public class GameMatrix
     {
         int rows;
         int colums;
@@ -12,6 +12,11 @@ namespace Snake_Classic
         double middleColum;
         Field[,] matrix;
 
+        public Field[,] Matrix
+        {
+            get { return matrix; }
+            set { matrix = value; }
+        }
         public int Rows
         {
             get { return rows; }
@@ -29,8 +34,16 @@ namespace Snake_Classic
             this.Colums = col;
             matrix = new Field[Rows, Colums];
 
-            double doubleCopyRow = this.Rows;
-            middleRow = Math.Floor(doubleCopyRow / 2);
+            SetCentreCordinates();
+
+        }
+
+        private void SetCentreCordinates()
+        {
+            double doubleCopyRows = this.Rows;
+            middleRow = Math.Floor(doubleCopyRows / 2);
+            double doubleCopyColums = this.Colums;
+            middleColum = Math.Floor(doubleCopyColums / 2);
         }
     }
 
