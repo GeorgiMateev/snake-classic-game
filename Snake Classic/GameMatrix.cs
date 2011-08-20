@@ -46,9 +46,16 @@ namespace SnakeInterfaces
 
             SetCentreCordinates();
             FillWithEmptyFields();
-
+            SetBorderFields();
         }
-
+        
+        private void SetCentreCordinates()
+        {
+            double doubleCopyRows = Convert.ToDouble(this.Rows);
+            middleRow = Convert.ToInt32(Math.Floor(doubleCopyRows / 2));
+            double doubleCopyColums = Convert.ToDouble(this.Colums);
+            middleColum = Convert.ToInt32(Math.Floor(doubleCopyColums / 2));
+        }
         private void FillWithEmptyFields()
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
@@ -59,14 +66,19 @@ namespace SnakeInterfaces
                 }
             }
         }
-
-        private void SetCentreCordinates()
+        private void SetBorderFields()
         {
-            double doubleCopyRows = Convert.ToDouble(this.Rows);
-            middleRow = Convert.ToInt32( Math.Floor(doubleCopyRows / 2));
-            double doubleCopyColums = Convert.ToDouble( this.Colums);
-            middleColum =Convert.ToInt32( Math.Floor(doubleCopyColums / 2));
-        }
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                matrix[row, 0] = new BorderField();
+                matrix[row, matrix.GetLength(1)] = new BorderField();
+            }
+            for (int col = 0; col < matrix.GetLength(1); col++)
+            {
+                matrix[0, col] = new BorderField();
+                matrix[matrix.GetLength(0), col] = new BorderField();
+            }
+        }        
     }
 
     public class Field
@@ -82,6 +94,9 @@ namespace SnakeInterfaces
     {
     }
     public class WallField:Field
+    {
+    }
+    public class BorderField : Field
     {
     }
 }

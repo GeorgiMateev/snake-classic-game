@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.labelTime = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBoxTimeInterval = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -43,10 +43,10 @@
             this.labelTime.TabIndex = 1;
             this.labelTime.Text = "Time";
             // 
-            // comboBox1
+            // comboBoxTimeInterval
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxTimeInterval.FormattingEnabled = true;
+            this.comboBoxTimeInterval.Items.AddRange(new object[] {
             "1000",
             "500",
             "400",
@@ -55,10 +55,10 @@
             "100",
             "50",
             "20"});
-            this.comboBox1.Location = new System.Drawing.Point(48, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this.comboBoxTimeInterval.Location = new System.Drawing.Point(48, 40);
+            this.comboBoxTimeInterval.Name = "comboBoxTimeInterval";
+            this.comboBoxTimeInterval.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxTimeInterval.TabIndex = 2;
             // 
             // label1
             // 
@@ -86,7 +86,7 @@
             this.ClientSize = new System.Drawing.Size(515, 354);
             this.Controls.Add(this.buttonNewGame);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.comboBoxTimeInterval);
             this.Controls.Add(this.labelTime);
             this.Name = "SnakeMainForm";
             this.Text = "Snake Classic";
@@ -98,7 +98,7 @@
         #endregion
 
         private System.Windows.Forms.Label labelTime;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxTimeInterval;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonNewGame;
 

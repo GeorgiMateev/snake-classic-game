@@ -23,9 +23,12 @@ namespace SnakeClassicGUI
 
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
+            int timeInterval = int.Parse(comboBoxTimeInterval.SelectedText);
             GameMatrix gamePlatform = new GameMatrix(30, 30);
-            Snake theSnake = new Snake(gamePlatform);            
-        }      
+            Snake theSnake = new Snake(gamePlatform,timeInterval);            
+        }
+
+           
          
 
         
