@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 
 
+
 namespace SnakeInterfaces
 {
     public enum Directions
@@ -15,16 +16,22 @@ namespace SnakeInterfaces
     {
         Directions direction;
         bool running;
-        Queue<SnakeFragment> snakeBody;
+        List<SnakeFragment> snakeBody;
         GameMatrix gamePlatform;
-        Timer snakeTimer;
+        Timer snakeTimer;    
+        SnakeFragment headFragment;
 
+        public SnakeFragment HeadFragment
+        {
+            get { return headFragment; }
+            set { headFragment = value; }
+        }
         public Timer SnakeTimer
         {
             get { return snakeTimer; }
             set { snakeTimer = value; }
         }
-        public Queue<SnakeFragment> SnakeBody
+        public List<SnakeFragment> SnakeBody
         {
             get { return snakeBody; }
             set { snakeBody = value; }
@@ -40,22 +47,79 @@ namespace SnakeInterfaces
             set { direction = value; }
         }
 
-        public Snake(GameMatrix gamePlatform)
+        public Snake(GameMatrix gamePlatform,int timeInterval)
         {
             Direction = Directions.Left;
-            this.gamePlatform = gamePlatform;
+            this.gamePlatform = gamePlatform;            
+            this.snakeTimer.Interval = timeInterval;
+            this.snakeTimer.Tick += new EventHandler(snakeTimer_Tick);
+        }
+
+        void snakeTimer_Tick(object sender, EventArgs e)
+        {
+            MoveSnake();          
         }
 
         private void CreateBasicSnake()
         {
-            this.SnakeBody.Enqueue
-                (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum, gamePlatform.Matrix));
+            this.SnakeBody.Add
+                (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum, gamePlatform.Matrix, this));
             for (int i = 1; i < 5; i++)
             {
-                this.SnakeBody.Enqueue
-                    (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum + i, gamePlatform.Matrix));
+                this.SnakeBody.Add
+                    (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum - i, gamePlatform.Matrix, this));
             }
-        }     
+        } 
+        private void MoveSnake()
+        {
+            Field directionField = ReturnDirectionField();
+            CheckField(directionField);
+        }        
+        private Field ReturnDirectionField()
+        {
+            switch (this.Direction)
+            {
+                case Directions.Left:
+                    return gamePlatform.Matrix[headFragment.Row, headFragment.Col-1];
+                    break;
+                case Directions.Right:
+                    return gamePlatform.Matrix[headFragment.Row, headFragment.Col+1];
+                    break;
+                case Directions.Up:
+                    return gamePlatform.Matrix[headFragment.Row-1, headFragment.Col];
+                    break;
+                case Directions.Down:
+                    return gamePlatform.Matrix[headFragment.Row+1, headFragment.Col];
+                    break;
+                default:
+                    throw new ApplicationException("Something with the snake control gone wrong!");
+                    break;
+            }
+        }
+        private void CheckField(Field directionField)
+        {
+            if (directionField is EmptyField)
+            {
+                this.OnlyMove();
+            }
+            if (directionField is SnakeField)
+            {
+                this.SnakeOverlap();
+            }
+            if (directionField is FoodField)
+            {
+                this.IncreaseSnake();
+            }
+            if (directionField is WallField)
+            {
+                this.WallHit();
+            }
+            if (directionField is BorderField)
+            {
+                this.TeleportAcrossField();
+            }
+        }      
+        
         
     }
 
@@ -75,10 +139,11 @@ namespace SnakeInterfaces
             set { col = value; }
         }
 
-        public SnakeFragment(int row, int col,Field[,] currentMatrix)
+        public SnakeFragment(int row, int col,Field[,] currentMatrix,Snake currentSnake)
         {
             this.Row = row;
             this.Col = col;
+            currentSnake.HeadFragment = currentSnake.SnakeBody[currentSnake.SnakeBody.Count - 1];
             PutIntoMatrix(this.Row, this.Col, currentMatrix);
         }
 
