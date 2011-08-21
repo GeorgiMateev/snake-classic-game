@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SnakeInterfaces
+namespace SnakeClassLib
 {
     public class GameMatrix
     {
@@ -45,8 +45,7 @@ namespace SnakeInterfaces
             matrix = new Field[Rows, Colums];
 
             SetCentreCordinates();
-            FillWithEmptyFields();
-            SetBorderFields();
+            FillWithEmptyFields();            
         }
         
         private void SetCentreCordinates()
@@ -62,41 +61,70 @@ namespace SnakeInterfaces
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    matrix[row, col]=new EmptyField();
+                    matrix[row, col]=new EmptyField(row,col);
                 }
             }
         }
-        private void SetBorderFields()
-        {
-            for (int row = 0; row < matrix.GetLength(0); row++)
-            {
-                matrix[row, 0] = new BorderField();
-                matrix[row, matrix.GetLength(1)] = new BorderField();
-            }
-            for (int col = 0; col < matrix.GetLength(1); col++)
-            {
-                matrix[0, col] = new BorderField();
-                matrix[matrix.GetLength(0), col] = new BorderField();
-            }
-        }        
+            
     }
 
     public class Field
     {
+        int row;
+        int col;
+
+        public int Col
+        {
+            get { return col; }
+            set { col = value; }
+        }
+        public int Row
+        {
+            get { return row; }
+            set { row = value; }
+        }
+
+        public Field(int row, int col)
+        {
+            this.row = row;
+            this.col = col;
+        }
     }
     public class EmptyField:Field
     {
+        public EmptyField(int row, int col)
+            : base(row, col)
+        {
+            this.Row = row;
+            this.Col = col;
+        }
     }
     public class SnakeField:Field
     {
+        public SnakeField(int row, int col)
+            : base(row, col)
+        {
+            this.Row = row;
+            this.Col = col;
+        }
     }
     public class FoodField:Field
     {
+        public FoodField(int row, int col)
+            : base(row, col)
+        {
+            this.Row = row;
+            this.Col = col;
+        }
     }
     public class WallField:Field
     {
+        public WallField(int row, int col)
+            : base(row, col)
+        {
+            this.Row = row;
+            this.Col = col;
+        }
     }
-    public class BorderField : Field
-    {
-    }
+    
 }

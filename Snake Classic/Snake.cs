@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 
 
-namespace SnakeInterfaces
+namespace SnakeClassLib
 {
     public enum Directions
     {
@@ -77,50 +77,131 @@ namespace SnakeInterfaces
         }        
         private Field ReturnDirectionField()
         {
-            switch (this.Direction)
+            try
             {
-                case Directions.Left:
-                    return gamePlatform.Matrix[headFragment.Row, headFragment.Col-1];
-                    break;
-                case Directions.Right:
-                    return gamePlatform.Matrix[headFragment.Row, headFragment.Col+1];
-                    break;
-                case Directions.Up:
-                    return gamePlatform.Matrix[headFragment.Row-1, headFragment.Col];
-                    break;
-                case Directions.Down:
-                    return gamePlatform.Matrix[headFragment.Row+1, headFragment.Col];
-                    break;
-                default:
-                    throw new ApplicationException("Something with the snake control gone wrong!");
-                    break;
+                switch (this.Direction)
+                {
+
+                    case Directions.Left:
+                        return gamePlatform.Matrix[headFragment.Row, headFragment.Col - 1];
+                        break;
+                    case Directions.Right:
+                        return gamePlatform.Matrix[headFragment.Row, headFragment.Col + 1];
+                        break;
+                    case Directions.Up:
+                        return gamePlatform.Matrix[headFragment.Row - 1, headFragment.Col];
+                        break;
+                    case Directions.Down:
+                        return gamePlatform.Matrix[headFragment.Row + 1, headFragment.Col];
+                        break;
+                    default:
+                        throw new ApplicationException("Something with the snake control gone wrong!");
+                        break;
+                }
+            }
+            catch (IndexOutOfRangeException)
+            {
+                return TeleportAcrossPlatform();
             }
         }
         private void CheckField(Field directionField)
         {
+            if (IsPreviousField(directionField))
+            {
+                this.NormalizeDirection();
+            }            
             if (directionField is EmptyField)
             {
-                this.OnlyMove();
-            }
-            if (directionField is SnakeField)
-            {
-                this.SnakeOverlap();
+                this.OnlyMove(directionField);
             }
             if (directionField is FoodField)
             {
-                this.IncreaseSnake();
-            }
+                this.IncreaseSnake(directionField);
+            }            
+            if (directionField is SnakeField)
+            {
+                this.SnakeOverlap();
+            }            
             if (directionField is WallField)
             {
                 this.WallHit();
-            }
-            if (directionField is BorderField)
+            }            
+        }               
+        private Field TeleportAcrossPlatform()
+        {
+            switch (this.Direction)
             {
-                this.TeleportAcrossField();
+                case Directions.Left:
+                    return gamePlatform.Matrix[headFragment.Row, gamePlatform.Matrix.GetLength(1)];
+                    break;
+                case Directions.Right:
+                    return gamePlatform.Matrix[headFragment.Row, 0];
+                    break;
+                case Directions.Up:
+                    return gamePlatform.Matrix[gamePlatform.Matrix.GetLength(0), headFragment.Col];
+                    break;
+                case Directions.Down:
+                    return gamePlatform.Matrix[0, headFragment.Col];
+                    break;
+                default:
+                    throw new ApplicationException("When crossing platform something gone wrong");
+                    break;
             }
-        }      
-        
-        
+        }              
+
+        private bool IsPreviousField(Field directionField)
+        {
+            return (directionField.Row == snakeBody[snakeBody.Count - 2].Row && directionField.Col == snakeBody[snakeBody.Count - 2].Col);            
+        }
+        private void NormalizeDirection()
+        {
+            switch (this.Direction)
+            {
+                case Directions.Left:
+                    this.Direction = Directions.Right;
+                    break;
+                case Directions.Right:
+                    this.Direction = Directions.Left;
+                    break;
+                case Directions.Up:
+                    this.Direction = Directions.Down;
+                    break;
+                case Directions.Down:
+                    this.Direction = Directions.Up;
+                    break;
+                default: throw new ApplicationException("Something with the snake movement gone wrong");
+                    break;
+            }
+        }
+
+        private void OnlyMove(Field directionField)
+        {
+            this.snakeBody.Add
+                (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this));
+            this.snakeBody.RemoveAt(0);
+            EmptyUsedField();
+        }        
+        private void IncreaseSnake(Field directionField)
+        {
+            this.snakeBody.Add
+                (new SnakeFragment(directionField.Row, directionField.Col, gamePlatform.Matrix, this));
+        }
+        private void EmptyUsedField()
+        {
+            gamePlatform.Matrix[this.snakeBody[0].Row, this.snakeBody[0].Col] = new EmptyField(this.snakeBody[0].Row, this.snakeBody[0].Col);
+        }
+        private void SnakeOverlap()
+        {
+            this.GameOver();
+        }
+        private void WallHit()
+        {
+            this.GameOver();
+        }
+        private void GameOver()
+        {
+
+        }
     }
 
     public class SnakeFragment
@@ -149,7 +230,7 @@ namespace SnakeInterfaces
 
         private void PutIntoMatrix(int row, int col, Field[,] currentMatrix)
         {
-            currentMatrix[row, col] = new SnakeField();
+            currentMatrix[row, col] = new SnakeField(row,col);
         }
 
         
