@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using SnakeInterfaces;
+using SnakeClassLib;
 using SnakeGraphicEngine;
 
 
@@ -23,7 +23,7 @@ namespace SnakeClassicGUI
 
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
-            int timeInterval = int.Parse(comboBoxTimeInterval.SelectedText);
+            int timeInterval = int.Parse(comboBoxTimeInterval.Text);
             GameMatrix gamePlatform = new GameMatrix(30, 30);
             Snake theSnake = new Snake(gamePlatform,timeInterval);            
         }
