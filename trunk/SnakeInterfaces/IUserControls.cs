@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 namespace SnakeInterfaces
 {
-    interface IUserControls<T>
+    public interface IUserControls<T>
     {
         T ChangeDirectionToLeft();
         T ChangeDirectionToRight();
