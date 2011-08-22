@@ -44,8 +44,9 @@ namespace SnakeClassLib
             this.Colums = col;
             matrix = new Field[Rows, Colums];
 
-            SetCentreCordinates();
-            FillWithEmptyFields();            
+            this.SetCentreCordinates();
+            this.FillWithEmptyFields();
+            this.GenerateFoodField();
         }
         
         private void SetCentreCordinates()
@@ -65,7 +66,24 @@ namespace SnakeClassLib
                 }
             }
         }
-            
+        internal void GenerateFoodField()
+        {
+            int randomRow = this.RandomNumber(0, this.Rows - 1);
+            int randomCol = this.RandomNumber(0, this.Colums - 1);
+            if (this.matrix[randomRow, randomCol] is EmptyField)
+            {
+                this.matrix[randomRow, randomCol] = new FoodField(randomRow, randomCol);
+            }
+            else
+            {
+                this.GenerateFoodField();
+            }
+        }
+        private int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
     }
 
     public class Field

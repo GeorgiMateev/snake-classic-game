@@ -20,19 +20,40 @@ namespace SnakeClassicGUI
             InitializeComponent();           
             
         }
+        private GameMatrix gamePlatform;
+        private Snake theSnake;
+        private UserControls userSnakeControl;
+
+        public Snake TheSnake
+        {
+            get { return theSnake; }
+            set { theSnake = value; }
+        }
 
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
             int timeInterval = int.Parse(comboBoxTimeInterval.Text);
-            GameMatrix gamePlatform = new GameMatrix(30, 30);
-            Snake theSnake = new Snake(gamePlatform,timeInterval);
+            gamePlatform = new GameMatrix(30, 30);
+            theSnake = new Snake(gamePlatform,timeInterval);
             theSnake.CreateBasicSnake();
-            theSnake.SnakeTimer.Start();
+            userSnakeControl = new UserControls(StartGUI.snakeMainForm);
+            panelNewGame.Enabled = false;
+            theSnake.GameOver += new Snake.GameOverEventHandler(theSnake_GameOver);
+            StartGUI.snakeMainForm.Focus();
+            theSnake.RunChange += new Snake.SnakeRunningChangeEventHandler(theSnake_RunChange);
         }
 
-           
-         
+        void theSnake_RunChange(object sender, SnakeRunningEventArgs e)
+        {
+            textBoxSnakeCondition.Text = e.Status;
+        }
 
-        
+        void theSnake_GameOver(object sender, GameOverEventArgs e)
+        {
+            theSnake.StartOrStopSnakeTimer();
+            panelNewGame.Enabled = true;
+            textBoxResult.Text = e.SnakeSize.ToString();
+        }           
+                       
     }
 }

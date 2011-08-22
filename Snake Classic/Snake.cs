@@ -11,15 +11,53 @@ namespace SnakeClassLib
     {
         Left,Right,Up,Down
     }
-    
-    public class Snake
+
+    public class GameOverEventArgs : EventArgs
     {
+        private int snakeSize;
+
+        public int SnakeSize
+        {
+            get { return snakeSize; }
+            set { snakeSize = value; }
+        }
+
+        public GameOverEventArgs(List<SnakeFragment> snakeBody)
+        {
+            this.snakeSize = snakeBody.Count;
+        }
+    }
+
+    public class SnakeRunningEventArgs : EventArgs
+    {
+        private string status;
+
+        public string Status
+        {
+            get { return status; }
+            set { status = value; }
+        }
+        public SnakeRunningEventArgs(string status)
+        {
+            this.status = status;
+        }
+    }
+
+    public class Snake
+    {      
+
         Directions direction;
         bool running;
         List<SnakeFragment> snakeBody;
         GameMatrix gamePlatform;
         Timer snakeTimer;    
         SnakeFragment headFragment;
+
+        public delegate void GameOverEventHandler(object sender, GameOverEventArgs e);
+        public event GameOverEventHandler GameOver;
+
+        public delegate void SnakeRunningChangeEventHandler(object sender, SnakeRunningEventArgs e);
+        public event SnakeRunningChangeEventHandler RunChange;
 
         public SnakeFragment HeadFragment
         {
@@ -53,6 +91,7 @@ namespace SnakeClassLib
             this.gamePlatform = gamePlatform;
             this.snakeBody = new List<SnakeFragment>();           
             this.snakeTimer = new Timer();
+            this.snakeTimer.Enabled = false;
             this.snakeTimer.Interval = timeInterval;
             this.snakeTimer.Tick += new EventHandler(snakeTimer_Tick);
         }
@@ -78,6 +117,22 @@ namespace SnakeClassLib
         {
             this.HeadFragment = this.SnakeBody[this.SnakeBody.Count - 1];
         }
+
+        public void StartOrStopSnakeTimer()
+        {
+            if (this.SnakeTimer.Enabled)
+            {
+                this.SnakeTimer.Stop();
+                SnakeRunningEventArgs e = new SnakeRunningEventArgs("Stopped");
+                this.RunChange(this, e);
+            }
+            else
+            {
+                this.SnakeTimer.Start();
+                SnakeRunningEventArgs e = new SnakeRunningEventArgs("Running");
+                this.RunChange(this, e);
+            }
+        }    
 
         private void MoveSnake()
         {
@@ -126,6 +181,7 @@ namespace SnakeClassLib
             if (directionField is FoodField)
             {
                 this.IncreaseSnake(directionField);
+                this.gamePlatform.GenerateFoodField();
             }            
             if (directionField is SnakeField)
             {
@@ -203,15 +259,20 @@ namespace SnakeClassLib
         }
         private void SnakeOverlap()
         {
-            this.GameOver();
+            this.CallGameOver();
         }
         private void WallHit()
         {
-            this.GameOver();
+            this.CallGameOver();
         }
-        private void GameOver()
+        private void CallGameOver()
         {
-
+            GameOverEventArgs e = new GameOverEventArgs(this.snakeBody);
+            if (this.GameOver!=null)
+            {
+                this.GameOver(this, e);
+                
+            }
         }
     }
 
