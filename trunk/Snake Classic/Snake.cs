@@ -50,7 +50,9 @@ namespace SnakeClassLib
         public Snake(GameMatrix gamePlatform,int timeInterval)
         {
             Direction = Directions.Left;
-            this.gamePlatform = gamePlatform;            
+            this.gamePlatform = gamePlatform;
+            this.snakeBody = new List<SnakeFragment>();           
+            this.snakeTimer = new Timer();
             this.snakeTimer.Interval = timeInterval;
             this.snakeTimer.Tick += new EventHandler(snakeTimer_Tick);
         }
@@ -60,8 +62,9 @@ namespace SnakeClassLib
             MoveSnake();          
         }
 
-        private void CreateBasicSnake()
+        public void CreateBasicSnake()
         {
+            
             this.SnakeBody.Add
                 (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum, gamePlatform.Matrix, this));
             for (int i = 1; i < 5; i++)
@@ -69,7 +72,13 @@ namespace SnakeClassLib
                 this.SnakeBody.Add
                     (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum - i, gamePlatform.Matrix, this));
             }
-        } 
+            this.SetHeadFragment();
+        }
+        public void SetHeadFragment()
+        {
+            this.HeadFragment = this.SnakeBody[this.SnakeBody.Count - 1];
+        }
+
         private void MoveSnake()
         {
             Field directionField = ReturnDirectionField();
@@ -132,13 +141,13 @@ namespace SnakeClassLib
             switch (this.Direction)
             {
                 case Directions.Left:
-                    return gamePlatform.Matrix[headFragment.Row, gamePlatform.Matrix.GetLength(1)];
+                    return gamePlatform.Matrix[headFragment.Row, gamePlatform.Matrix.GetLength(1)-1];
                     break;
                 case Directions.Right:
                     return gamePlatform.Matrix[headFragment.Row, 0];
                     break;
                 case Directions.Up:
-                    return gamePlatform.Matrix[gamePlatform.Matrix.GetLength(0), headFragment.Col];
+                    return gamePlatform.Matrix[gamePlatform.Matrix.GetLength(0)-1, headFragment.Col];
                     break;
                 case Directions.Down:
                     return gamePlatform.Matrix[0, headFragment.Col];
@@ -178,6 +187,7 @@ namespace SnakeClassLib
         {
             this.snakeBody.Add
                 (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this));
+            this.SetHeadFragment();
             this.snakeBody.RemoveAt(0);
             EmptyUsedField();
         }        
@@ -185,6 +195,7 @@ namespace SnakeClassLib
         {
             this.snakeBody.Add
                 (new SnakeFragment(directionField.Row, directionField.Col, gamePlatform.Matrix, this));
+            this.SetHeadFragment();
         }
         private void EmptyUsedField()
         {
@@ -219,14 +230,14 @@ namespace SnakeClassLib
             get { return col; }
             set { col = value; }
         }
-
+        
         public SnakeFragment(int row, int col,Field[,] currentMatrix,Snake currentSnake)
         {
             this.Row = row;
             this.Col = col;
-            currentSnake.HeadFragment = currentSnake.SnakeBody[currentSnake.SnakeBody.Count - 1];
+            
             PutIntoMatrix(this.Row, this.Col, currentMatrix);
-        }
+        }        
 
         private void PutIntoMatrix(int row, int col, Field[,] currentMatrix)
         {
