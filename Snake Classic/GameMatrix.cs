@@ -119,11 +119,18 @@ namespace SnakeClassLib
     }
     public class SnakeField:Field
     {
+        public delegate void SnakeFieldCreateEventHandler(object sender);
+        public static event SnakeFieldCreateEventHandler SnakeFieldCreated;
         public SnakeField(int row, int col)
             : base(row, col)
         {
             this.Row = row;
             this.Col = col;
+            SnakeFieldEventArgs e = new SnakeFieldEventArgs(row, col);
+            if (SnakeFieldCreated != null)
+            {
+                SnakeFieldCreated(this);
+            }
         }
     }
     public class FoodField:Field
@@ -142,6 +149,29 @@ namespace SnakeClassLib
         {
             this.Row = row;
             this.Col = col;
+        }
+    }
+
+
+    public class SnakeFieldEventArgs
+    {
+        private int row;
+        private int col;
+
+        public int Col
+        {
+            get { return col; }
+            set { col = value; }
+        }
+        public int Row
+        {
+            get { return row; }
+            set { row = value; }
+        }
+        public SnakeFieldEventArgs(int row, int col)
+        {
+            this.row = row;
+            this.col = col;
         }
     }
     
