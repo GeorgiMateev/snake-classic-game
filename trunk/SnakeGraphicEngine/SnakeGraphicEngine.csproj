@@ -51,9 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SnakeInterfaces\SnakeInterfaces.csproj">
-      <Project>{FAFA7588-6D95-4341-B858-D7F4173EAD19}</Project>
-      <Name>SnakeInterfaces</Name>
+    <ProjectReference Include="..\Snake Classic\SnakeClassLib.csproj">
+      <Project>{86E81D73-9FE1-43B0-9E3C-C8656D36DA75}</Project>
+      <Name>SnakeClassLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

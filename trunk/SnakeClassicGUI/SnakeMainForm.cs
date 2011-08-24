@@ -10,7 +10,6 @@ using SnakeClassLib;
 using SnakeGraphicEngine;
 
 
-
 namespace SnakeClassicGUI
 {
     public partial class SnakeMainForm : Form
@@ -20,6 +19,9 @@ namespace SnakeClassicGUI
             InitializeComponent();           
             
         }
+
+        
+
         private GameMatrix gamePlatform;
         private Snake theSnake;
         private UserControls userSnakeControl;
@@ -30,17 +32,30 @@ namespace SnakeClassicGUI
             set { theSnake = value; }
         }
 
+          
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
+            CreateGraphic(StartGUI.snakeMainForm);
+            userSnakeControl = new UserControls(StartGUI.snakeMainForm);
+
             int timeInterval = int.Parse(comboBoxTimeInterval.Text);
             gamePlatform = new GameMatrix(30, 30);
             theSnake = new Snake(gamePlatform,timeInterval);
             theSnake.CreateBasicSnake();
-            userSnakeControl = new UserControls(StartGUI.snakeMainForm);
+            
+
             panelNewGame.Enabled = false;
+
             theSnake.GameOver += new Snake.GameOverEventHandler(theSnake_GameOver);
-            StartGUI.snakeMainForm.Focus();
             theSnake.RunChange += new Snake.SnakeRunningChangeEventHandler(theSnake_RunChange);
+            StartGUI.snakeMainForm.Focus();
+                    
+        }
+
+        private static void CreateGraphic(object form)
+        {
+            Form givenForm = (Form)form;
+            GameGrapric gamePlatformGraphic = new GameGrapric(givenForm);
         }
 
         void theSnake_RunChange(object sender, SnakeRunningEventArgs e)
@@ -53,7 +68,9 @@ namespace SnakeClassicGUI
             theSnake.StartOrStopSnakeTimer();
             panelNewGame.Enabled = true;
             textBoxResult.Text = e.SnakeSize.ToString();
-        }           
+        }
+
+                
                        
     }
 }
