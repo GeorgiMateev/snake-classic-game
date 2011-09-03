@@ -14,35 +14,105 @@ namespace SnakeGraphicEngine
     {
         private Graphics matrixGraphic;
         private Form currentForm;
-
+        private int fieldSize;
+        private int graphicLocationX;
+        private int graphicLocationY;
+        private int width;
+        private int height;
+   
+ 
+        
         public Graphics MatrixGraphic
         {
             get { return matrixGraphic; }
             set { matrixGraphic = value; }
         }
-        public GameGrapric(Form currentForm)
-        {
-            this.currentForm = currentForm;
-            this.matrixGraphic = this.currentForm.CreateGraphics();
-            this.matrixGraphic.PageUnit = GraphicsUnit.Millimeter;
-            SnakeField.SnakeFieldCreated += new SnakeField.SnakeFieldCreateEventHandler(SnakeField_SnakeFieldCreated);
-            DrawEmptyField();
-        }       
 
-        private void DrawEmptyField()
-        {           
-            Brush emptyFieldBrush = new SolidBrush(Color.WhiteSmoke);
-            Rectangle borderRectangle = new Rectangle(50, 35, 150, 150);
-            this.matrixGraphic.Clip = new Region(borderRectangle);            
-            this.matrixGraphic.FillRectangle(emptyFieldBrush, this.matrixGraphic.ClipBounds);                       
-        }
-        void SnakeField_SnakeFieldCreated(object sender)
+        public GameGrapric(Form currentForm,int grLocX,int grLocY,int cols,int rows,int fieldSize)
         {
-            SnakeField unPackedSender = (SnakeField)sender;            
-            Brush snakeFieldBrush = new SolidBrush(Color.GreenYellow);
-            this.matrixGraphic.FillRectangle
-                (snakeFieldBrush, unPackedSender.Col * 5 - 5, unPackedSender.Row * 5 - 5, 5, 5);
+            this.fieldSize = fieldSize;
+            this.graphicLocationX = grLocX;
+            this.graphicLocationY = grLocY;
+            this.width = cols*this.fieldSize;
+            this.height = rows*this.fieldSize;
+     
+            this.currentForm = currentForm;
+
+            this.matrixGraphic = this.currentForm.CreateGraphics();        
+            
+            SnakeField.SnakeFieldCreated += new SnakeField.SnakeFieldCreateEventHandler(SnakeField_SnakeFieldCreated);
+            FoodField.FoodFieldCreated += new FoodField.FoodFieldCreateEventHandler(FoodField_FoodFieldCreated);
+            EmptyField.EmptyFieldCreated += new EmptyField.EmptyFieldCreateEventHandler(EmptyField_EmptyFieldCreated);
+            WallField.WallFieldCreated += new WallField.WallFieldCreateEventHandler(WallField_WallFieldCreated);
         }
+
         
+
+       
+
+        public void WallField_WallFieldCreated(WallField sender)
+        {
+            Brush wallFieldBrush = new SolidBrush(Color.Gray);
+            int wallFieldX = graphicLocationX + sender.Col * this.fieldSize;
+            int wallFieldY = graphicLocationY + sender.Row * this.fieldSize;
+            this.matrixGraphic.FillRectangle
+                (wallFieldBrush, wallFieldX, wallFieldY, this.fieldSize, this.fieldSize);
+            wallFieldBrush.Dispose();
+        }       
+        public void SnakeField_SnakeFieldCreated(SnakeField sender)
+        {
+            Brush snakeFieldBrush = new SolidBrush(Color.ForestGreen);   
+            int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
+            int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
+            this.matrixGraphic.FillRectangle
+                (snakeFieldBrush,snakeFieldX,snakeFieldY, this.fieldSize,this.fieldSize);
+            snakeFieldBrush.Dispose();
+        }      
+        public void FoodField_FoodFieldCreated(FoodField sender)
+        {
+            Brush FoodFieldBrush = new SolidBrush(Color.DarkGreen);
+            int foodFieldX = graphicLocationX + sender.Col * this.fieldSize;
+            int foodFiledY = graphicLocationY + sender.Row * this.fieldSize;
+            this.matrixGraphic.FillRectangle
+                (FoodFieldBrush, foodFieldX, foodFiledY, this.fieldSize,this.fieldSize);
+            FoodFieldBrush.Dispose();
+        }
+        public void EmptyField_EmptyFieldCreated(EmptyField sender)
+        {
+            Brush EmptyFieldBrush = new SolidBrush(Color.LightGoldenrodYellow);
+            int emptyFieldX = graphicLocationX + sender.Col * this.fieldSize;
+            int emptyFiledY = graphicLocationY + sender.Row * this.fieldSize;
+            this.matrixGraphic.FillRectangle
+                (EmptyFieldBrush, emptyFieldX, emptyFiledY, this.fieldSize, this.fieldSize);
+            EmptyFieldBrush.Dispose();
+        }
+
+
+        public void RePaintPlatform(Field[,] currentMatrix)
+        {
+            foreach (var item in currentMatrix)
+            {
+                if (item is EmptyField)
+                {
+                    EmptyField unpackedItem = (EmptyField)item;
+                    unpackedItem.CallCreateEvent();
+                }
+                if (item is SnakeField)
+                {
+                    SnakeField unpackedItem = (SnakeField)item;
+                    unpackedItem.CallCreateEvent();
+                }
+                if (item is FoodField)
+                {
+                    FoodField unpackedItem = (FoodField)item;
+                    unpackedItem.CallCreateEvent();
+                }
+                if (item is WallField)
+                {
+                    WallField unpackedItem = (WallField)item;
+                    unpackedItem.CallCreateEvent();
+                }
+            }
+        }
     }
 }

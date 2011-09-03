@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SnakeClassicGUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("a")]
+[assembly: AssemblyCompany("Georgi Mateev")]
 [assembly: AssemblyProduct("SnakeClassicGUI")]
 [assembly: AssemblyCopyright("Copyright © a 2011")]
 [assembly: AssemblyTrademark("")]

@@ -14,12 +14,14 @@ namespace SnakeClassicGUI
         public static SnakeMainForm snakeMainForm;
         [STAThread]        
         static void Main()
-        {
+        {          
             
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            snakeMainForm = new SnakeMainForm();
-            Application.Run(snakeMainForm);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                snakeMainForm = new SnakeMainForm();
+
+                Application.Run(snakeMainForm);
+                      
         }
     }
 }
