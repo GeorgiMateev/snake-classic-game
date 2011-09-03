@@ -11,6 +11,7 @@ namespace SnakeClassLib
     {
         Left,Right,Up,Down
     }
+    
 
     public class GameOverEventArgs : EventArgs
     {
@@ -48,10 +49,12 @@ namespace SnakeClassLib
 
         Directions direction;
         bool running;
+        int changedDirectionCount;       
         List<SnakeFragment> snakeBody;
         GameMatrix gamePlatform;
         Timer snakeTimer;    
         SnakeFragment headFragment;
+
 
         public delegate void GameOverEventHandler(object sender, GameOverEventArgs e);
         public event GameOverEventHandler GameOver;
@@ -84,10 +87,16 @@ namespace SnakeClassLib
             get { return direction; }
             set { direction = value; }
         }
+        public int ChangedDirectionCount
+        {
+            get { return changedDirectionCount; }
+            set { changedDirectionCount = value; }
+        }
 
         public Snake(GameMatrix gamePlatform,int timeInterval)
         {
             Direction = Directions.Left;
+            changedDirectionCount=0;
             this.gamePlatform = gamePlatform;
             this.snakeBody = new List<SnakeFragment>();           
             this.snakeTimer = new Timer();
@@ -170,10 +179,7 @@ namespace SnakeClassLib
         }
         private void CheckField(Field directionField)
         {
-            if (IsPreviousField(directionField))
-            {
-                this.NormalizeDirection();
-            }            
+                      
             if (directionField is EmptyField)
             {
                 this.OnlyMove(directionField);
@@ -185,7 +191,14 @@ namespace SnakeClassLib
             }            
             if (directionField is SnakeField)
             {
-                this.SnakeOverlap();
+                if (IsPreviousField(directionField))
+                {
+                    this.NormalizeDirection();
+                }
+                else
+                {
+                    this.SnakeOverlap();
+                }
             }            
             if (directionField is WallField)
             {
@@ -244,8 +257,8 @@ namespace SnakeClassLib
             this.snakeBody.Add
                 (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this));
             this.SetHeadFragment();
-            this.snakeBody.RemoveAt(0);
             EmptyUsedField();
+            this.snakeBody.RemoveAt(0);           
         }        
         private void IncreaseSnake(Field directionField)
         {
@@ -265,7 +278,7 @@ namespace SnakeClassLib
         {
             this.CallGameOver();
         }
-        private void CallGameOver()
+        public void CallGameOver()
         {
             GameOverEventArgs e = new GameOverEventArgs(this.snakeBody);
             if (this.GameOver!=null)

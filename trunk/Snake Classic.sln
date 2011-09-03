@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeClassLib", "Snake Classic\SnakeClassLib.csproj", "{86E81D73-9FE1-43B0-9E3C-C8656D36DA75}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SnakeClassicGUI", "SnakeClassicGUI\SnakeClassicGUI.csproj", "{2115687A-5F86-4E51-8892-6CDE965E2D66}"

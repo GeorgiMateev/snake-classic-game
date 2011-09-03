@@ -11,6 +11,7 @@ namespace SnakeClassLib
         int middleRow;
         int middleColum;
         Field[,] matrix;
+        bool includeBorderWalls;
 
         public Field[,] Matrix
         {
@@ -21,34 +22,40 @@ namespace SnakeClassLib
         {
             get { return middleRow; }
             set { middleRow = value; }
-        }       
+        }
         public int MiddleColum
         {
             get { return middleColum; }
             set { middleColum = value; }
-        }    
+        }
         public int Rows
         {
             get { return rows; }
             set { rows = value; }
-        }       
+        }
         public int Colums
         {
             get { return colums; }
             set { colums = value; }
         }
 
-        public GameMatrix(int row, int col)
+        public GameMatrix(int row, int col,bool includeWalls)
         {
             this.Rows = row;
             this.Colums = col;
+            this.includeBorderWalls = includeWalls;
             matrix = new Field[Rows, Colums];
 
             this.SetCentreCordinates();
             this.FillWithEmptyFields();
+            if (this.includeBorderWalls)
+            {
+                this.CreateBorderWalls();
+            }
             this.GenerateFoodField();
         }
-        
+
+       
         private void SetCentreCordinates()
         {
             double doubleCopyRows = Convert.ToDouble(this.Rows);
@@ -56,13 +63,26 @@ namespace SnakeClassLib
             double doubleCopyColums = Convert.ToDouble(this.Colums);
             middleColum = Convert.ToInt32(Math.Floor(doubleCopyColums / 2));
         }
+        private void CreateBorderWalls()
+        {
+            for (int row = 0; row < matrix.GetLength(0); row++)
+            {
+                matrix[row, 0] = new WallField(row, 0);
+                matrix[row, matrix.GetLength(1)-1] = new WallField(row, matrix.GetLength(1)-1);
+            }
+            for (int col = 0; col < matrix.GetLength(1); col++)
+            {
+                matrix[0, col] = new WallField(0, col);
+                matrix[matrix.GetLength(0)-1, col] = new WallField(matrix.GetLength(0)-1, col);
+            }
+        }
         private void FillWithEmptyFields()
         {
             for (int row = 0; row < matrix.GetLength(0); row++)
             {
                 for (int col = 0; col < matrix.GetLength(1); col++)
                 {
-                    matrix[row, col]=new EmptyField(row,col);
+                    matrix[row, col] = new EmptyField(row, col);
                 }
             }
         }
@@ -108,71 +128,88 @@ namespace SnakeClassLib
             this.col = col;
         }
     }
-    public class EmptyField:Field
+    public class EmptyField : Field
     {
+        public delegate void EmptyFieldCreateEventHandler(EmptyField sender);
+        public static event EmptyFieldCreateEventHandler EmptyFieldCreated;
         public EmptyField(int row, int col)
             : base(row, col)
         {
             this.Row = row;
             this.Col = col;
+            this.CallCreateEvent();
+        }
+
+        public void CallCreateEvent()
+        {
+            if (EmptyFieldCreated != null)
+            {
+                EmptyFieldCreated(this);
+            }
         }
     }
-    public class SnakeField:Field
+    public class SnakeField : Field
     {
-        public delegate void SnakeFieldCreateEventHandler(object sender);
+        public delegate void SnakeFieldCreateEventHandler(SnakeField sender);
         public static event SnakeFieldCreateEventHandler SnakeFieldCreated;
         public SnakeField(int row, int col)
             : base(row, col)
         {
             this.Row = row;
             this.Col = col;
-            SnakeFieldEventArgs e = new SnakeFieldEventArgs(row, col);
+
+            this.CallCreateEvent();
+        }
+
+        public void CallCreateEvent()
+        {
             if (SnakeFieldCreated != null)
             {
                 SnakeFieldCreated(this);
             }
         }
     }
-    public class FoodField:Field
+    public class FoodField : Field
     {
+        public delegate void FoodFieldCreateEventHandler(FoodField sender);
+        public static event FoodFieldCreateEventHandler FoodFieldCreated;
         public FoodField(int row, int col)
             : base(row, col)
         {
             this.Row = row;
             this.Col = col;
+            this.CallCreateEvent();
+        }
+
+        public void CallCreateEvent()
+        {
+            if (FoodFieldCreated != null)
+            {
+                FoodFieldCreated(this);
+            }
         }
     }
-    public class WallField:Field
+    public class WallField : Field
     {
+        public delegate void WallFieldCreateEventHandler(WallField sender);
+        public static event WallFieldCreateEventHandler WallFieldCreated;
         public WallField(int row, int col)
             : base(row, col)
         {
             this.Row = row;
             this.Col = col;
+            this.CallCreateEvent();
+        }
+
+        public void CallCreateEvent()
+        {
+            if (WallFieldCreated != null)
+            {
+                WallFieldCreated(this);
+            }
         }
     }
-
-
-    public class SnakeFieldEventArgs
-    {
-        private int row;
-        private int col;
-
-        public int Col
-        {
-            get { return col; }
-            set { col = value; }
-        }
-        public int Row
-        {
-            get { return row; }
-            set { row = value; }
-        }
-        public SnakeFieldEventArgs(int row, int col)
-        {
-            this.row = row;
-            this.col = col;
-        }
-    }
-    
 }
+
+
+   
