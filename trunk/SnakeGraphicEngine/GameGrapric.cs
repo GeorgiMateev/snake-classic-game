@@ -19,8 +19,10 @@ namespace SnakeGraphicEngine
         private int graphicLocationY;
         private int width;
         private int height;
-   
- 
+        private Color emptyFieldColor;
+        private Color snakeFieldColor;
+        private Color wallFieldColor;
+        private Color foodFieldColor;
         
         public Graphics MatrixGraphic
         {
@@ -52,7 +54,7 @@ namespace SnakeGraphicEngine
 
         public void WallField_WallFieldCreated(WallField sender)
         {
-            Brush wallFieldBrush = new SolidBrush(Color.Gray);
+            Brush wallFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentWallFieldColor);
             int wallFieldX = graphicLocationX + sender.Col * this.fieldSize;
             int wallFieldY = graphicLocationY + sender.Row * this.fieldSize;
             this.matrixGraphic.FillRectangle
@@ -61,7 +63,7 @@ namespace SnakeGraphicEngine
         }       
         public void SnakeField_SnakeFieldCreated(SnakeField sender)
         {
-            Brush snakeFieldBrush = new SolidBrush(Color.ForestGreen);   
+            Brush snakeFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor);   
             int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
             int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
             this.matrixGraphic.FillRectangle
@@ -70,7 +72,7 @@ namespace SnakeGraphicEngine
         }      
         public void FoodField_FoodFieldCreated(FoodField sender)
         {
-            Brush FoodFieldBrush = new SolidBrush(Color.DarkGreen);
+            Brush FoodFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentFoodFieldColor);
             int foodFieldX = graphicLocationX + sender.Col * this.fieldSize;
             int foodFiledY = graphicLocationY + sender.Row * this.fieldSize;
             this.matrixGraphic.FillRectangle
@@ -79,7 +81,7 @@ namespace SnakeGraphicEngine
         }
         public void EmptyField_EmptyFieldCreated(EmptyField sender)
         {
-            Brush EmptyFieldBrush = new SolidBrush(Color.LightGoldenrodYellow);
+            Brush EmptyFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentEmptyFieldColor);
             int emptyFieldX = graphicLocationX + sender.Col * this.fieldSize;
             int emptyFiledY = graphicLocationY + sender.Row * this.fieldSize;
             this.matrixGraphic.FillRectangle

@@ -21,6 +21,7 @@ namespace SnakeClassicGUI
         private GameGrapric gamePlatformGraphic;
         private NewGameForm newGameForm;
         private FormGameOver gameOverForm;
+        private FormColors formColors;
         private DateTime elapsedTime;
         
         
@@ -34,6 +35,12 @@ namespace SnakeClassicGUI
         {
             get { return newGameForm; }
             set { newGameForm = value; }
+        }
+
+        public FormColors FormColors
+        {
+            get { return formColors; }
+            set { formColors = value; }
         }
         public GameGrapric GamePlatformGraphic
         {
@@ -68,13 +75,14 @@ namespace SnakeClassicGUI
            // this.Paint += new System.Windows.Forms.PaintEventHandler(SnakeMainForm_Paint);
             //this.Resize += new EventHandler(SnakeMainForm_Resize);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+           
         }
 
        
         public void CreateGraphic(Form givenForm,int cols,int rows,int pixelSize)
         {
            
-            gamePlatformGraphic = new GameGrapric(givenForm,10,25,cols,rows,pixelSize);
+            gamePlatformGraphic = new GameGrapric(givenForm,10,25,cols,rows,pixelSize);            
             
         }
 
@@ -149,14 +157,17 @@ namespace SnakeClassicGUI
             this.gamePlatformGraphic.RePaintPlatform(this.gamePlatform.Matrix);         
        
         }
-        void SnakeMainForm_Resize(object sender, EventArgs e)
-        {
-            this.gamePlatformGraphic.RePaintPlatform(this.gamePlatform.Matrix);  
-        }
+        
 
         private void toolStripButtonClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void colorsToolStripMenuColors_Click(object sender, EventArgs e)
+        {
+            this.formColors = new FormColors(this);
+            this.formColors.ShowDialog();
         }
 
       
