@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SnakeClassicGUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DefaultEmptyFieldColor" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">LightGoldenrodYellow</Value>
+    </Setting>
+    <Setting Name="DefaultSnakeFieldColor" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">ForestGreen</Value>
+    </Setting>
+    <Setting Name="DefaultFoodFieldColor" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">DarkGreen</Value>
+    </Setting>
+    <Setting Name="DefaultWallFieldColor" Type="System.Drawing.Color" Scope="Application">
+      <Value Profile="(Default)">DarkGray</Value>
+    </Setting>
+    <Setting Name="CurrentEmptyFieldColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGoldenrodYellow</Value>
+    </Setting>
+    <Setting Name="CurrentSnakeFieldColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">ForestGreen</Value>
+    </Setting>
+    <Setting Name="CurrentFoodFieldColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkGreen</Value>
+    </Setting>
+    <Setting Name="CurrentWallFieldColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">DarkGray</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

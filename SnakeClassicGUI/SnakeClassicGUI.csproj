@@ -73,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormColors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormColors.Designer.cs">
+      <DependentUpon>FormColors.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameOverForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,6 +91,7 @@
     <Compile Include="NewGameForm.Designer.cs">
       <DependentUpon>NewGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SnakeMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +100,9 @@
     </Compile>
     <Compile Include="StartGUI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormColors.resx">
+      <DependentUpon>FormColors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameOverForm.resx">
       <DependentUpon>GameOverForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -112,6 +122,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="app.config" />
     <None Include="Properties\DataSources\NewGameForm.datasource" />
     <None Include="Properties\DataSources\SnakeClassicGUI.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\SnakeClassicGUI.Properties.Settings.datasource" />
@@ -119,7 +130,7 @@
     <None Include="Properties\DataSources\StartGUI.datasource" />
     <None Include="Properties\DataSources\UserControls.datasource" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -137,10 +148,6 @@
     <ProjectReference Include="..\SnakeGraphicEngine\SnakeGraphicEngine.csproj">
       <Project>{0688A821-815B-46EC-BE2E-9C83EB559A7A}</Project>
       <Name>SnakeGraphicEngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SnakeInterfaces\SnakeInterfaces.csproj">
-      <Project>{FAFA7588-6D95-4341-B858-D7F4173EAD19}</Project>
-      <Name>SnakeInterfaces</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
