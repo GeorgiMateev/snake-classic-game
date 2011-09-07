@@ -77,9 +77,9 @@
             this.labelTime.AutoSize = true;
             this.labelTime.Location = new System.Drawing.Point(12, 9);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(84, 13);
+            this.labelTime.Size = new System.Drawing.Size(38, 13);
             this.labelTime.TabIndex = 8;
-            this.labelTime.Text = "Time for a Move";
+            this.labelTime.Text = "Speed";
             // 
             // radioButton1
             // 

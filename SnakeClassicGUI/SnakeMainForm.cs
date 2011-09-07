@@ -122,7 +122,14 @@ namespace SnakeClassicGUI
                 this.Height = ownerFormSizeY;
             }
             this.DesktopLocation = new Point(5, 5);
-            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = FormBorderStyle.Fixed3D;
+            this.BackgroundImage = null;
+            this.buttonNewGame.Enabled = false;
+            this.buttonOptions.Enabled = false;
+            this.buttonExit.Enabled = false;
+            this.buttonNewGame.Visible = false;
+            this.buttonOptions.Visible = false;
+            this.buttonExit.Visible = false;
         }
 
         internal void StartOrStopGameDurationTimer()

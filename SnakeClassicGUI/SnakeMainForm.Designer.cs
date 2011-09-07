@@ -36,6 +36,8 @@ namespace SnakeClassicGUI
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.surrenderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMainMenu = new System.Windows.Forms.ToolStrip();
+            this.toolStripDropDownButtonOptions = new System.Windows.Forms.ToolStripDropDownButton();
+            this.colorsToolStripMenuColors = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButtonClose = new System.Windows.Forms.ToolStripButton();
             this.statusStripGameStatus = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelRunning = new System.Windows.Forms.ToolStripStatusLabel();
@@ -44,8 +46,9 @@ namespace SnakeClassicGUI
             this.toolStripStatusLabelElapsedTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerGameDuration = new System.Windows.Forms.Timer(this.components);
             this.textBoxError = new System.Windows.Forms.TextBox();
-            this.toolStripDropDownButtonOptions = new System.Windows.Forms.ToolStripDropDownButton();
-            this.colorsToolStripMenuColors = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonNewGame = new System.Windows.Forms.Button();
+            this.buttonOptions = new System.Windows.Forms.Button();
+            this.buttonExit = new System.Windows.Forms.Button();
             this.toolStripMainMenu.SuspendLayout();
             this.statusStripGameStatus.SuspendLayout();
             this.SuspendLayout();
@@ -85,9 +88,27 @@ namespace SnakeClassicGUI
             this.toolStripButtonClose});
             this.toolStripMainMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMainMenu.Name = "toolStripMainMenu";
-            this.toolStripMainMenu.Size = new System.Drawing.Size(426, 25);
+            this.toolStripMainMenu.Size = new System.Drawing.Size(408, 25);
             this.toolStripMainMenu.TabIndex = 9;
             this.toolStripMainMenu.Text = "toolStrip1";
+            // 
+            // toolStripDropDownButtonOptions
+            // 
+            this.toolStripDropDownButtonOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDropDownButtonOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.colorsToolStripMenuColors});
+            this.toolStripDropDownButtonOptions.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonOptions.Image")));
+            this.toolStripDropDownButtonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButtonOptions.Name = "toolStripDropDownButtonOptions";
+            this.toolStripDropDownButtonOptions.Size = new System.Drawing.Size(62, 22);
+            this.toolStripDropDownButtonOptions.Text = "Options";
+            // 
+            // colorsToolStripMenuColors
+            // 
+            this.colorsToolStripMenuColors.Name = "colorsToolStripMenuColors";
+            this.colorsToolStripMenuColors.Size = new System.Drawing.Size(108, 22);
+            this.colorsToolStripMenuColors.Text = "Colors";
+            this.colorsToolStripMenuColors.Click += new System.EventHandler(this.colorsToolStripMenuColors_Click);
             // 
             // toolStripButtonClose
             // 
@@ -106,9 +127,9 @@ namespace SnakeClassicGUI
             this.toolStripStatusLabelResult,
             this.toolStripStatusLabelTurn,
             this.toolStripStatusLabelElapsedTime});
-            this.statusStripGameStatus.Location = new System.Drawing.Point(0, 174);
+            this.statusStripGameStatus.Location = new System.Drawing.Point(0, 533);
             this.statusStripGameStatus.Name = "statusStripGameStatus";
-            this.statusStripGameStatus.Size = new System.Drawing.Size(426, 22);
+            this.statusStripGameStatus.Size = new System.Drawing.Size(408, 22);
             this.statusStripGameStatus.TabIndex = 10;
             this.statusStripGameStatus.Text = "Status";
             // 
@@ -124,21 +145,18 @@ namespace SnakeClassicGUI
             // 
             this.toolStripStatusLabelResult.Margin = new System.Windows.Forms.Padding(0, 3, 20, 2);
             this.toolStripStatusLabelResult.Name = "toolStripStatusLabelResult";
-            this.toolStripStatusLabelResult.Size = new System.Drawing.Size(42, 17);
-            this.toolStripStatusLabelResult.Text = "Result:";
+            this.toolStripStatusLabelResult.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStripStatusLabelTurn
             // 
             this.toolStripStatusLabelTurn.Margin = new System.Windows.Forms.Padding(0, 3, 20, 2);
             this.toolStripStatusLabelTurn.Name = "toolStripStatusLabelTurn";
-            this.toolStripStatusLabelTurn.Size = new System.Drawing.Size(109, 17);
-            this.toolStripStatusLabelTurn.Text = "Changed Direction:";
+            this.toolStripStatusLabelTurn.Size = new System.Drawing.Size(0, 17);
             // 
             // toolStripStatusLabelElapsedTime
             // 
             this.toolStripStatusLabelElapsedTime.Name = "toolStripStatusLabelElapsedTime";
-            this.toolStripStatusLabelElapsedTime.Size = new System.Drawing.Size(37, 17);
-            this.toolStripStatusLabelElapsedTime.Text = "Time:";
+            this.toolStripStatusLabelElapsedTime.Size = new System.Drawing.Size(0, 17);
             // 
             // timerGameDuration
             // 
@@ -150,42 +168,61 @@ namespace SnakeClassicGUI
             this.textBoxError.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.textBoxError.Enabled = false;
             this.textBoxError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxError.Location = new System.Drawing.Point(0, 151);
+            this.textBoxError.Location = new System.Drawing.Point(0, 510);
             this.textBoxError.Name = "textBoxError";
             this.textBoxError.ReadOnly = true;
-            this.textBoxError.Size = new System.Drawing.Size(426, 23);
+            this.textBoxError.Size = new System.Drawing.Size(408, 23);
             this.textBoxError.TabIndex = 11;
             // 
-            // toolStripDropDownButtonOptions
+            // buttonNewGame
             // 
-            this.toolStripDropDownButtonOptions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDropDownButtonOptions.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.colorsToolStripMenuColors});
-            this.toolStripDropDownButtonOptions.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButtonOptions.Image")));
-            this.toolStripDropDownButtonOptions.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDropDownButtonOptions.Name = "toolStripDropDownButtonOptions";
-            this.toolStripDropDownButtonOptions.Size = new System.Drawing.Size(62, 22);
-            this.toolStripDropDownButtonOptions.Text = "Options";
+            this.buttonNewGame.Location = new System.Drawing.Point(157, 399);
+            this.buttonNewGame.Name = "buttonNewGame";
+            this.buttonNewGame.Size = new System.Drawing.Size(105, 31);
+            this.buttonNewGame.TabIndex = 12;
+            this.buttonNewGame.Text = "New Game";
+            this.buttonNewGame.UseVisualStyleBackColor = true;
+            this.buttonNewGame.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
-            // colorsToolStripMenuColors
+            // buttonOptions
             // 
-            this.colorsToolStripMenuColors.Name = "colorsToolStripMenuColors";
-            this.colorsToolStripMenuColors.Size = new System.Drawing.Size(152, 22);
-            this.colorsToolStripMenuColors.Text = "Colors";
-            this.colorsToolStripMenuColors.Click += new System.EventHandler(this.colorsToolStripMenuColors_Click);
+            this.buttonOptions.Location = new System.Drawing.Point(157, 436);
+            this.buttonOptions.Name = "buttonOptions";
+            this.buttonOptions.Size = new System.Drawing.Size(105, 31);
+            this.buttonOptions.TabIndex = 12;
+            this.buttonOptions.Text = "Options";
+            this.buttonOptions.UseVisualStyleBackColor = true;
+            this.buttonOptions.Click += new System.EventHandler(this.colorsToolStripMenuColors_Click);
+            // 
+            // buttonExit
+            // 
+            this.buttonExit.Location = new System.Drawing.Point(157, 473);
+            this.buttonExit.Name = "buttonExit";
+            this.buttonExit.Size = new System.Drawing.Size(105, 31);
+            this.buttonExit.TabIndex = 12;
+            this.buttonExit.Text = "Exit";
+            this.buttonExit.UseVisualStyleBackColor = true;
+            this.buttonExit.Click += new System.EventHandler(this.toolStripButtonClose_Click);
             // 
             // SnakeMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(426, 196);
+            this.BackgroundImage = global::SnakeClassicGUI.Properties.Resources._1086_Snake;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(408, 555);
+            this.Controls.Add(this.buttonExit);
+            this.Controls.Add(this.buttonOptions);
+            this.Controls.Add(this.buttonNewGame);
             this.Controls.Add(this.textBoxError);
             this.Controls.Add(this.statusStripGameStatus);
             this.Controls.Add(this.toolStripMainMenu);
             this.Cursor = System.Windows.Forms.Cursors.Default;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "SnakeMainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Snake Classic";
             this.toolStripMainMenu.ResumeLayout(false);
             this.toolStripMainMenu.PerformLayout();
@@ -214,6 +251,9 @@ namespace SnakeClassicGUI
         private System.Windows.Forms.ToolStripButton toolStripButtonClose;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonOptions;
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuColors;
+        public System.Windows.Forms.Button buttonNewGame;
+        public System.Windows.Forms.Button buttonOptions;
+        public System.Windows.Forms.Button buttonExit;
 
 
     }
