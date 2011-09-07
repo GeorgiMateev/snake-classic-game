@@ -38,13 +38,23 @@ namespace SnakeClassicGUI
 
         private void ConfigureNewFormUsability()
         {
+            this.ownerForm.StartPosition = FormStartPosition.CenterScreen;
+            this.ownerForm.Width = 418;
+            this.ownerForm.Height = 587;
             this.ownerForm.newGameToolStripMenuItem.Enabled = true;
             this.ownerForm.surrenderToolStripMenuItem.Enabled = false;
             this.ownerForm.toolStripStatusLabelRunning.Text = "Ready";
-            this.ownerForm.toolStripStatusLabelElapsedTime.Text = "Time:";
-            this.ownerForm.toolStripStatusLabelResult.Text = "Result:";
-            this.ownerForm.toolStripStatusLabelTurn.Text = "Changed Direction:";
+            this.ownerForm.toolStripStatusLabelElapsedTime.Text = "";
+            this.ownerForm.toolStripStatusLabelResult.Text = "";
+            this.ownerForm.toolStripStatusLabelTurn.Text = "";
             this.ownerForm.textBoxError.Text = "";
+            this.ownerForm.BackgroundImage = SnakeClassicGUI.Properties.Resources._1086_Snake;
+            this.ownerForm.buttonNewGame.Enabled = true;
+            this.ownerForm.buttonOptions.Enabled = true;
+            this.ownerForm.buttonExit.Enabled = true;
+            this.ownerForm.buttonNewGame.Visible = true;
+            this.ownerForm.buttonOptions.Visible = true;
+            this.ownerForm.buttonExit.Visible = true;
         }
 
         private void DisconnectOldFormFromEvents()
