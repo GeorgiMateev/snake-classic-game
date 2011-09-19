@@ -68,6 +68,14 @@ namespace SnakeClassicGUI
                 (ownerForm.GamePlatformGraphic.FoodField_FoodFieldCreated);
             WallField.WallFieldCreated -= new WallField.WallFieldCreateEventHandler
                 (ownerForm.GamePlatformGraphic.WallField_WallFieldCreated);
+            SnakeField.SnakeFieldSmoothCreation -= new SnakeField.SnakeFieldSmoothCreationEventHandler
+                (ownerForm.GamePlatformGraphic.SnakeField_SnakeFieldSmoothCreation);
+            EmptyField.EmptyFieldSmoothCreation -= new EmptyField.EmptyFieldSmoothCreationEventHandler
+                (ownerForm.GamePlatformGraphic.EmptyField_EmptyFieldSmoothCreation);
+            SnakeField.SnakeFieldSmoothCreation -= new SnakeField.SnakeFieldSmoothCreationEventHandler
+                (ownerForm.GamePlatformGraphic.SnakeField_SnakeFieldCreated);
+            EmptyField.EmptyFieldSmoothCreation -= new EmptyField.EmptyFieldSmoothCreationEventHandler
+                (ownerForm.GamePlatformGraphic.EmptyField_EmptyFieldCreated);
             this.ownerForm.Paint -= new System.Windows.Forms.PaintEventHandler(this.ownerForm.SnakeMainForm_Paint);
         }
 

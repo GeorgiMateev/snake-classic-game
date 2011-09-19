@@ -114,11 +114,11 @@ namespace SnakeClassLib
         {
             
             this.SnakeBody.Add
-                (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum, gamePlatform.Matrix, this));
+                (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum, gamePlatform.Matrix, this,Directions.Left));
             for (int i = 1; i < 5; i++)
             {
                 this.SnakeBody.Add
-                    (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum - i, gamePlatform.Matrix, this));
+                    (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum - i, gamePlatform.Matrix, this,this.snakeBody[snakeBody.Count-1].DrawDirection));
             }
             this.SetHeadFragment();
         }
@@ -255,7 +255,7 @@ namespace SnakeClassLib
         private void OnlyMove(Field directionField)
         {
             this.snakeBody.Add
-                (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this));
+                (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this,this.Direction));
             this.SetHeadFragment();
             EmptyUsedField();
             this.snakeBody.RemoveAt(0);           
@@ -263,12 +263,13 @@ namespace SnakeClassLib
         private void IncreaseSnake(Field directionField)
         {
             this.snakeBody.Add
-                (new SnakeFragment(directionField.Row, directionField.Col, gamePlatform.Matrix, this));
+                (new SnakeFragment(directionField.Row, directionField.Col, gamePlatform.Matrix, this,this.Direction));
             this.SetHeadFragment();
         }
         private void EmptyUsedField()
         {
-            gamePlatform.Matrix[this.snakeBody[0].Row, this.snakeBody[0].Col] = new EmptyField(this.snakeBody[0].Row, this.snakeBody[0].Col);
+            gamePlatform.Matrix[this.snakeBody[0].Row, this.snakeBody[0].Col] = 
+                new EmptyField(this.snakeBody[0].Row, this.snakeBody[0].Col,this.snakeBody[1].DrawDirection);
         }
         private void SnakeOverlap()
         {
@@ -293,6 +294,13 @@ namespace SnakeClassLib
     {
         int row;
         int col;
+        Directions drawDirection;
+
+        public Directions DrawDirection
+        {
+            get { return drawDirection; }
+            set { drawDirection = value; }
+        }
 
         public int Row
         {
@@ -305,17 +313,17 @@ namespace SnakeClassLib
             set { col = value; }
         }
         
-        public SnakeFragment(int row, int col,Field[,] currentMatrix,Snake currentSnake)
+        public SnakeFragment(int row, int col,Field[,] currentMatrix,Snake currentSnake,Directions drawDirection)
         {
             this.Row = row;
             this.Col = col;
-            
-            PutIntoMatrix(this.Row, this.Col, currentMatrix);
+            this.drawDirection = drawDirection;
+            PutIntoMatrix(this.Row, this.Col, currentMatrix,drawDirection);
         }        
 
-        private void PutIntoMatrix(int row, int col, Field[,] currentMatrix)
+        private void PutIntoMatrix(int row, int col, Field[,] currentMatrix,Directions drawDirection)
         {
-            currentMatrix[row, col] = new SnakeField(row,col);
+            currentMatrix[row, col] = new SnakeField(row,col,drawDirection);
         }
 
         

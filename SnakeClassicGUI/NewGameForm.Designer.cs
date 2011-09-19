@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewGameForm));
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.comboBoxTimeInterval = new System.Windows.Forms.ComboBox();
@@ -39,14 +40,20 @@
             this.labelPixelSize = new System.Windows.Forms.Label();
             this.comboBoxPixelSize = new System.Windows.Forms.ComboBox();
             this.checkBoxBorderWalls = new System.Windows.Forms.CheckBox();
+            this.checkBoxSmoothGraphic = new System.Windows.Forms.CheckBox();
+            this.labelWarning = new System.Windows.Forms.Label();
+            this.labelWarning2 = new System.Windows.Forms.Label();
+            this.checkBoxDefGameOptions = new System.Windows.Forms.CheckBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBoxFieldSize.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNewGame
             // 
-            this.buttonNewGame.Location = new System.Drawing.Point(12, 146);
+            this.buttonNewGame.Location = new System.Drawing.Point(15, 305);
             this.buttonNewGame.Name = "buttonNewGame";
-            this.buttonNewGame.Size = new System.Drawing.Size(75, 23);
+            this.buttonNewGame.Size = new System.Drawing.Size(124, 28);
             this.buttonNewGame.TabIndex = 7;
             this.buttonNewGame.Text = "New game";
             this.buttonNewGame.UseVisualStyleBackColor = true;
@@ -54,9 +61,9 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(186, 146);
+            this.buttonCancel.Location = new System.Drawing.Point(145, 305);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(127, 28);
             this.buttonCancel.TabIndex = 8;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -146,9 +153,9 @@
             "4",
             "3",
             "2"});
-            this.comboBoxPixelSize.Location = new System.Drawing.Point(15, 84);
+            this.comboBoxPixelSize.Location = new System.Drawing.Point(12, 84);
             this.comboBoxPixelSize.Name = "comboBoxPixelSize";
-            this.comboBoxPixelSize.Size = new System.Drawing.Size(96, 21);
+            this.comboBoxPixelSize.Size = new System.Drawing.Size(99, 21);
             this.comboBoxPixelSize.TabIndex = 2;
             // 
             // checkBoxBorderWalls
@@ -161,11 +168,64 @@
             this.checkBoxBorderWalls.Text = "Include Border Walls";
             this.checkBoxBorderWalls.UseVisualStyleBackColor = true;
             // 
+            // checkBoxSmoothGraphic
+            // 
+            this.checkBoxSmoothGraphic.AutoSize = true;
+            this.checkBoxSmoothGraphic.Location = new System.Drawing.Point(15, 147);
+            this.checkBoxSmoothGraphic.Name = "checkBoxSmoothGraphic";
+            this.checkBoxSmoothGraphic.Size = new System.Drawing.Size(107, 17);
+            this.checkBoxSmoothGraphic.TabIndex = 13;
+            this.checkBoxSmoothGraphic.Text = "Smooth Graphics";
+            this.checkBoxSmoothGraphic.UseVisualStyleBackColor = true;
+            this.checkBoxSmoothGraphic.CheckedChanged += new System.EventHandler(this.checkBoxSmoothGraphic_CheckedChanged);
+            // 
+            // labelWarning
+            // 
+            this.labelWarning.AutoSize = true;
+            this.labelWarning.Location = new System.Drawing.Point(12, 167);
+            this.labelWarning.Name = "labelWarning";
+            this.labelWarning.Size = new System.Drawing.Size(231, 13);
+            this.labelWarning.TabIndex = 14;
+            this.labelWarning.Text = "Warning!More hardware resources will be used!";
+            // 
+            // labelWarning2
+            // 
+            this.labelWarning2.AutoSize = true;
+            this.labelWarning2.Location = new System.Drawing.Point(12, 180);
+            this.labelWarning2.Name = "labelWarning2";
+            this.labelWarning2.Size = new System.Drawing.Size(154, 13);
+            this.labelWarning2.TabIndex = 15;
+            this.labelWarning2.Text = "In higher speed may cause lag!";
+            // 
+            // checkBoxDefGameOptions
+            // 
+            this.checkBoxDefGameOptions.AutoSize = true;
+            this.checkBoxDefGameOptions.Location = new System.Drawing.Point(15, 210);
+            this.checkBoxDefGameOptions.Name = "checkBoxDefGameOptions";
+            this.checkBoxDefGameOptions.Size = new System.Drawing.Size(176, 17);
+            this.checkBoxDefGameOptions.TabIndex = 17;
+            this.checkBoxDefGameOptions.Text = "Save these options as prefered.";
+            this.checkBoxDefGameOptions.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(22, 235);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(239, 64);
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // NewGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 187);
+            this.ClientSize = new System.Drawing.Size(284, 345);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.checkBoxDefGameOptions);
+            this.Controls.Add(this.labelWarning2);
+            this.Controls.Add(this.labelWarning);
+            this.Controls.Add(this.checkBoxSmoothGraphic);
             this.Controls.Add(this.checkBoxBorderWalls);
             this.Controls.Add(this.comboBoxPixelSize);
             this.Controls.Add(this.labelPixelSize);
@@ -178,6 +238,7 @@
             this.Text = "New Game";
             this.groupBoxFieldSize.ResumeLayout(false);
             this.groupBoxFieldSize.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +257,10 @@
         private System.Windows.Forms.Label labelPixelSize;
         private System.Windows.Forms.ComboBox comboBoxPixelSize;
         private System.Windows.Forms.CheckBox checkBoxBorderWalls;
+        private System.Windows.Forms.CheckBox checkBoxSmoothGraphic;
+        private System.Windows.Forms.Label labelWarning;
+        private System.Windows.Forms.Label labelWarning2;
+        private System.Windows.Forms.CheckBox checkBoxDefGameOptions;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
