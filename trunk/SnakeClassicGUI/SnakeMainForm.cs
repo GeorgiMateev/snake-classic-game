@@ -72,17 +72,16 @@ namespace SnakeClassicGUI
         public SnakeMainForm()
         {
             InitializeComponent();
-           // this.Paint += new System.Windows.Forms.PaintEventHandler(SnakeMainForm_Paint);
-            //this.Resize += new EventHandler(SnakeMainForm_Resize);
+            this.FormClosing += new FormClosingEventHandler(toolStripButtonClose_Click);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
            
         }
 
-       
-        public void CreateGraphic(Form givenForm,int cols,int rows,int pixelSize)
+        
+        public void CreateGraphic(Form givenForm,int cols,int rows,int pixelSize,int snakeTimeInterval,bool includeSmoothGraphics)
         {
            
-            gamePlatformGraphic = new GameGrapric(givenForm,10,25,cols,rows,pixelSize);            
+            gamePlatformGraphic = new GameGrapric(givenForm,10,25,cols,rows,pixelSize,snakeTimeInterval,includeSmoothGraphics);            
             
         }
 
@@ -168,7 +167,12 @@ namespace SnakeClassicGUI
 
         private void toolStripButtonClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            MessageBoxButtons exitDialog = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show(this,"Do you really want to exit?","Exit",exitDialog);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
 
         private void colorsToolStripMenuColors_Click(object sender, EventArgs e)

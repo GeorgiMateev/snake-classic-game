@@ -38,7 +38,6 @@ namespace SnakeClassicGUI
             this.toolStripMainMenu = new System.Windows.Forms.ToolStrip();
             this.toolStripDropDownButtonOptions = new System.Windows.Forms.ToolStripDropDownButton();
             this.colorsToolStripMenuColors = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButtonClose = new System.Windows.Forms.ToolStripButton();
             this.statusStripGameStatus = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelRunning = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelResult = new System.Windows.Forms.ToolStripStatusLabel();
@@ -49,6 +48,8 @@ namespace SnakeClassicGUI
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.buttonOptions = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMainMenu.SuspendLayout();
             this.statusStripGameStatus.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +59,9 @@ namespace SnakeClassicGUI
             this.toolStripDropDownGame.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripDropDownGame.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newGameToolStripMenuItem,
-            this.surrenderToolStripMenuItem});
+            this.surrenderToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.exitToolStripMenuItem});
             this.toolStripDropDownGame.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownGame.Image")));
             this.toolStripDropDownGame.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownGame.Name = "toolStripDropDownGame";
@@ -68,7 +71,7 @@ namespace SnakeClassicGUI
             // newGameToolStripMenuItem
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newGameToolStripMenuItem.Text = "New Game";
             this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
@@ -76,16 +79,16 @@ namespace SnakeClassicGUI
             // 
             this.surrenderToolStripMenuItem.Enabled = false;
             this.surrenderToolStripMenuItem.Name = "surrenderToolStripMenuItem";
-            this.surrenderToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.surrenderToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.surrenderToolStripMenuItem.Text = "Surrender";
             this.surrenderToolStripMenuItem.Click += new System.EventHandler(this.surrenderToolStripMenuItem_Click);
             // 
             // toolStripMainMenu
             // 
+            this.toolStripMainMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownGame,
-            this.toolStripDropDownButtonOptions,
-            this.toolStripButtonClose});
+            this.toolStripDropDownButtonOptions});
             this.toolStripMainMenu.Location = new System.Drawing.Point(0, 0);
             this.toolStripMainMenu.Name = "toolStripMainMenu";
             this.toolStripMainMenu.Size = new System.Drawing.Size(408, 25);
@@ -106,19 +109,9 @@ namespace SnakeClassicGUI
             // colorsToolStripMenuColors
             // 
             this.colorsToolStripMenuColors.Name = "colorsToolStripMenuColors";
-            this.colorsToolStripMenuColors.Size = new System.Drawing.Size(108, 22);
+            this.colorsToolStripMenuColors.Size = new System.Drawing.Size(152, 22);
             this.colorsToolStripMenuColors.Text = "Colors";
             this.colorsToolStripMenuColors.Click += new System.EventHandler(this.colorsToolStripMenuColors_Click);
-            // 
-            // toolStripButtonClose
-            // 
-            this.toolStripButtonClose.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonClose.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonClose.Image")));
-            this.toolStripButtonClose.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonClose.Name = "toolStripButtonClose";
-            this.toolStripButtonClose.Size = new System.Drawing.Size(40, 22);
-            this.toolStripButtonClose.Text = "Close";
-            this.toolStripButtonClose.Click += new System.EventHandler(this.toolStripButtonClose_Click);
             // 
             // statusStripGameStatus
             // 
@@ -130,6 +123,7 @@ namespace SnakeClassicGUI
             this.statusStripGameStatus.Location = new System.Drawing.Point(0, 533);
             this.statusStripGameStatus.Name = "statusStripGameStatus";
             this.statusStripGameStatus.Size = new System.Drawing.Size(408, 22);
+            this.statusStripGameStatus.SizingGrip = false;
             this.statusStripGameStatus.TabIndex = 10;
             this.statusStripGameStatus.Text = "Status";
             // 
@@ -204,6 +198,18 @@ namespace SnakeClassicGUI
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.toolStripButtonClose_Click);
             // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.toolStripButtonClose_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
             // SnakeMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -248,12 +254,13 @@ namespace SnakeClassicGUI
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelResult;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelTurn;
         public System.Windows.Forms.TextBox textBoxError;
-        private System.Windows.Forms.ToolStripButton toolStripButtonClose;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonOptions;
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuColors;
         public System.Windows.Forms.Button buttonNewGame;
         public System.Windows.Forms.Button buttonOptions;
         public System.Windows.Forms.Button buttonExit;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
 
 
     }
