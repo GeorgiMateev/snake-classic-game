@@ -7,25 +7,59 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using SnakeClassLib;
+using DataDealer;
 
 namespace SnakeClassicGUI
 {
     public partial class FormGameOver : Form
     {
         SnakeMainForm ownerForm;
+        private int gameScore;
+        private Result currentResult;
+
+        public Result CurrentResult
+        {
+            get { return currentResult; }
+            set { currentResult = value; }
+        }
+
+        public int GameScore
+        {
+            get
+            {
+                return gameScore = ownerForm.TheSnake.SnakeBody.Count
+                    * ownerForm.FieldSizeIndex
+                    * ownerForm.Speed[ownerForm.TheSnake.SnakeTimer.Interval]
+                    * ownerForm.IncludeBorderIndex;
+            }
+            set { gameScore = value; }
+        }
+        
         public FormGameOver(SnakeMainForm ownerForm)
         {
             InitializeComponent();
             this.ownerForm = ownerForm;
             this.labelResult.Text = ownerForm.TheSnake.SnakeBody.Count.ToString();
             this.labelChangedDirection.Text = ownerForm.TheSnake.ChangedDirectionCount.ToString();
-            this.labelSpeed.Text = ownerForm.NewGameForm.Speed[ownerForm.TheSnake.SnakeTimer.Interval];
+            this.labelSpeed.Text = ownerForm.Speed[ownerForm.TheSnake.SnakeTimer.Interval]+"F/Sec";
             this.labelField.Text = ownerForm.GamePlatform.Rows + " X " + ownerForm.GamePlatform.Colums;
+            this.labelScore.Text = this.GameScore.ToString();
+            this.textBoxPlayerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
+
+            this.buttonNewGame.Click+=new EventHandler(buttonClose_Click);
+            this.buttonNewGame.Click += new EventHandler(this.ownerForm.newGameToolStripMenuItem_Click);
+
+            CurrentResult = new Result(this.GameScore,ownerForm.TheSnake.SnakeBody.Count, ownerForm.Speed[ownerForm.TheSnake.SnakeTimer.Interval] + "F/Sec",
+                ownerForm.FieldSize[ownerForm.FieldSizeIndex], ownerForm.IncludeBorderIndex);
+            DisplayPlace();
+
+            Result.DisplayResults(dataGridViewResult, 5);
+            labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
         }
 
-        private void buttonOk_Click(object sender, EventArgs e)
+        private void buttonClose_Click(object sender, EventArgs e)
         {
-           this.Close();
+            this.Close();
 
            this.ownerForm.Invalidate();
            
@@ -33,10 +67,10 @@ namespace SnakeClassicGUI
           
            StartGUI.snakeMainForm = new SnakeMainForm();
 
-           ConfigureNewFormUsability();
+           ConfigureNewSnakeMainFormUsability();
         }
 
-        private void ConfigureNewFormUsability()
+        private void ConfigureNewSnakeMainFormUsability()
         {
             this.ownerForm.StartPosition = FormStartPosition.CenterScreen;
             this.ownerForm.Width = 418;
@@ -48,10 +82,12 @@ namespace SnakeClassicGUI
             this.ownerForm.toolStripStatusLabelResult.Text = "";
             this.ownerForm.toolStripStatusLabelTurn.Text = "";
             this.ownerForm.textBoxError.Text = "";
-            this.ownerForm.BackgroundImage = SnakeClassicGUI.Properties.Resources._1086_Snake;
+            this.ownerForm.BackgroundImage = SnakeClassicGUI.Properties.Resources.SnakeBG;
             this.ownerForm.buttonNewGame.Enabled = true;
             this.ownerForm.buttonOptions.Enabled = true;
             this.ownerForm.buttonExit.Enabled = true;
+            this.ownerForm.buttonResults.Enabled = true;
+            this.ownerForm.buttonResults.Visible = true;
             this.ownerForm.buttonNewGame.Visible = true;
             this.ownerForm.buttonOptions.Visible = true;
             this.ownerForm.buttonExit.Visible = true;
@@ -77,8 +113,125 @@ namespace SnakeClassicGUI
             EmptyField.EmptyFieldSmoothCreation -= new EmptyField.EmptyFieldSmoothCreationEventHandler
                 (ownerForm.GamePlatformGraphic.EmptyField_EmptyFieldCreated);
             this.ownerForm.Paint -= new System.Windows.Forms.PaintEventHandler(this.ownerForm.SnakeMainForm_Paint);
+            this.ownerForm.LostFocus -= new EventHandler(this.ownerForm.form_LostFocus);
         }
 
- 
+        private void buttonSaveResult_Click(object sender, EventArgs e)
+        {
+            this.CurrentResult.Owner = SnakeClassicGUI.Properties.Game.Default.PlayerName;
+            bool isExecuted = CurrentResult.SaveResult();
+            if (isExecuted)
+            {
+                 textBoxMessages.Text = "The result is saved!";
+                 buttonSaveResult.Enabled = false;
+                 buttonChangeName.Enabled = false;
+            }            
+            Result.DisplayResults(dataGridViewResult,5);
+        }
+
+        private void DisplayPlace()
+        {
+            if (CurrentResult.Place == 1)
+            {
+                labelPlace.Text = "Congratulations! New First Record!";
+                labelPlace.ForeColor = Color.Red;
+                this.buttonSaveResult_Click(this, new EventArgs());
+            }
+            if (CurrentResult.Place <=5 && CurrentResult.Place > 1)
+            {
+                labelPlace.Text = "Your place is " + CurrentResult.CheckResultPlace()+"! You are in the top 5!";
+                labelPlace.ForeColor = Color.Red;
+                this.buttonSaveResult_Click(this, new EventArgs());
+            }
+            if (CurrentResult.Place > 5)
+            {
+                labelPlace.Text = "Your place is " + CurrentResult.CheckResultPlace();
+            }
+        }
+
+        private void buttonShowTopResult_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string textBoxText = textBoxResultNumber.Text;
+                int textBoxNumber = 0;
+                if (!int.TryParse(textBoxText, out textBoxNumber))
+                {
+                    throw new FormatException("Enter only numbers");
+                }
+                if (textBoxNumber <= 0)
+                {
+                    throw new ArgumentOutOfRangeException("Enter numbers greater than zero!");
+                }
+                Result.DisplayResults(dataGridViewResult, textBoxNumber);
+            }
+           
+            catch (FormatException err)
+            {
+                textBoxMessages.Text = err.Message;
+            }
+            catch (ArgumentOutOfRangeException err)
+            {
+                textBoxMessages.Text = err.Message;
+            }
+        }
+
+        private void buttonDeteFrom_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string textBoxText = textBoxDeleteFrom.Text;
+                int textBoxNumber = 0;
+                if (!int.TryParse(textBoxText, out textBoxNumber))
+                {
+                    throw new FormatException("Enter only numbers");
+                }
+                if (textBoxNumber < 0)
+                {
+                    throw new ArgumentOutOfRangeException("Enter numbers greater than ot equal to zero!");
+                }
+                Result.DeleteFrom(textBoxNumber);
+                Result.DisplayResults(dataGridViewResult, 5);
+                labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
+            }
+            catch (FormatException err)
+            {
+                textBoxMessages.Text = err.Message;
+            }
+            catch (ArgumentOutOfRangeException err)
+            {
+                textBoxMessages.Text = err.Message;
+            }
+        }
+
+        private void buttonDeleteAll_Click(object sender, EventArgs e)
+        {
+            MessageBoxButtons deleteDialog = MessageBoxButtons.YesNo;
+            DialogResult result = MessageBox.Show("Delete all records?", "Delete records", deleteDialog, MessageBoxIcon.Warning);
+            if (result==DialogResult.Yes)
+            {
+                Result.DeleteFrom(0);
+            }
+            Result.DisplayResults(dataGridViewResult, 5);
+            textBoxMessages.Text = "All records deleted!";
+            labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
+        }
+
+        private void buttonChangeName_Click(object sender, EventArgs e)
+        {
+            FormGetName getPlayerName = new FormGetName();
+            getPlayerName.ShowDialog();
+            if (getPlayerName.isOkClicked)
+            {
+                SnakeClassicGUI.Properties.Game.Default.PlayerName = getPlayerName.GetName;
+            }
+            textBoxPlayerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
+        }
+
+        private void buttonShowAll_Click(object sender, EventArgs e)
+        {
+            Result.DisplayResults(dataGridViewResult);
+        }
+  
     }
 }

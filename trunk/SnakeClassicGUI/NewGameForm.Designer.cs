@@ -45,13 +45,16 @@
             this.labelWarning2 = new System.Windows.Forms.Label();
             this.checkBoxDefGameOptions = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.labelPlayerName = new System.Windows.Forms.Label();
+            this.textBoxPlayerName = new System.Windows.Forms.TextBox();
+            this.buttonPlayerNameChange = new System.Windows.Forms.Button();
             this.groupBoxFieldSize.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonNewGame
             // 
-            this.buttonNewGame.Location = new System.Drawing.Point(15, 305);
+            this.buttonNewGame.Location = new System.Drawing.Point(15, 331);
             this.buttonNewGame.Name = "buttonNewGame";
             this.buttonNewGame.Size = new System.Drawing.Size(124, 28);
             this.buttonNewGame.TabIndex = 7;
@@ -61,7 +64,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(145, 305);
+            this.buttonCancel.Location = new System.Drawing.Point(145, 331);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(127, 28);
             this.buttonCancel.TabIndex = 8;
@@ -210,17 +213,48 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(22, 235);
+            this.pictureBox1.Location = new System.Drawing.Point(22, 261);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(239, 64);
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
             // 
+            // labelPlayerName
+            // 
+            this.labelPlayerName.AutoSize = true;
+            this.labelPlayerName.Location = new System.Drawing.Point(15, 245);
+            this.labelPlayerName.Name = "labelPlayerName";
+            this.labelPlayerName.Size = new System.Drawing.Size(68, 13);
+            this.labelPlayerName.TabIndex = 19;
+            this.labelPlayerName.Text = "Player name:";
+            // 
+            // textBoxPlayerName
+            // 
+            this.textBoxPlayerName.Enabled = false;
+            this.textBoxPlayerName.Location = new System.Drawing.Point(89, 238);
+            this.textBoxPlayerName.Name = "textBoxPlayerName";
+            this.textBoxPlayerName.ReadOnly = true;
+            this.textBoxPlayerName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPlayerName.TabIndex = 20;
+            // 
+            // buttonPlayerNameChange
+            // 
+            this.buttonPlayerNameChange.Location = new System.Drawing.Point(195, 235);
+            this.buttonPlayerNameChange.Name = "buttonPlayerNameChange";
+            this.buttonPlayerNameChange.Size = new System.Drawing.Size(77, 23);
+            this.buttonPlayerNameChange.TabIndex = 21;
+            this.buttonPlayerNameChange.Text = "Change";
+            this.buttonPlayerNameChange.UseVisualStyleBackColor = true;
+            this.buttonPlayerNameChange.Click += new System.EventHandler(this.buttonPlayerNameChange_Click);
+            // 
             // NewGameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 345);
+            this.ClientSize = new System.Drawing.Size(284, 368);
+            this.Controls.Add(this.buttonPlayerNameChange);
+            this.Controls.Add(this.textBoxPlayerName);
+            this.Controls.Add(this.labelPlayerName);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.checkBoxDefGameOptions);
             this.Controls.Add(this.labelWarning2);
@@ -262,5 +296,8 @@
         private System.Windows.Forms.Label labelWarning2;
         private System.Windows.Forms.CheckBox checkBoxDefGameOptions;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label labelPlayerName;
+        private System.Windows.Forms.TextBox textBoxPlayerName;
+        private System.Windows.Forms.Button buttonPlayerNameChange;
     }
 }

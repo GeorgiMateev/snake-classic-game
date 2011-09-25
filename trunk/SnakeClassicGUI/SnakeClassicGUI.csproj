@@ -46,7 +46,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -99,6 +100,12 @@
     <Compile Include="FormColors.Designer.cs">
       <DependentUpon>FormColors.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormGetName.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormGetName.Designer.cs">
+      <DependentUpon>FormGetName.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Game.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -116,6 +123,12 @@
     <Compile Include="NewGameForm.Designer.cs">
       <DependentUpon>NewGameForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultForm.Designer.cs">
+      <DependentUpon>ResultForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="SnakeMainForm.cs">
       <SubType>Form</SubType>
@@ -128,6 +141,9 @@
     <EmbeddedResource Include="FormColors.resx">
       <DependentUpon>FormColors.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormGetName.resx">
+      <DependentUpon>FormGetName.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameOverForm.resx">
       <DependentUpon>GameOverForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -138,6 +154,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultForm.resx">
+      <DependentUpon>ResultForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SnakeMainForm.resx">
       <DependentUpon>SnakeMainForm.cs</DependentUpon>
@@ -162,6 +181,10 @@
     <None Include="SnakeClassicGUI_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataDealer\DataDealer.csproj">
+      <Project>{5AFF2944-1320-493B-B7A1-1CD355B16404}</Project>
+      <Name>DataDealer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Snake Classic\SnakeClassLib.csproj">
       <Project>{86E81D73-9FE1-43B0-9E3C-C8656D36DA75}</Project>
       <Name>SnakeClassLib</Name>

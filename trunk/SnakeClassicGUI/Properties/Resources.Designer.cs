@@ -60,16 +60,16 @@ namespace SnakeClassicGUI.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap _1086_Snake {
+        internal static System.Drawing.Bitmap snake {
             get {
-                object obj = ResourceManager.GetObject("1086_Snake", resourceCulture);
+                object obj = ResourceManager.GetObject("snake", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap snake {
+        internal static System.Drawing.Bitmap SnakeBG {
             get {
-                object obj = ResourceManager.GetObject("snake", resourceCulture);
+                object obj = ResourceManager.GetObject("SnakeBG", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

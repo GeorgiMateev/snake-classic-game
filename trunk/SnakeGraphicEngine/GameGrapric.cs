@@ -109,7 +109,8 @@ namespace SnakeGraphicEngine
         }       
         public void SnakeField_SnakeFieldCreated(SnakeField sender)
         {
-            Brush snakeFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor);   
+            Brush snakeFieldBrush;
+            snakeFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor);
             int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
             int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
             lock (this.matrixGraphic)
