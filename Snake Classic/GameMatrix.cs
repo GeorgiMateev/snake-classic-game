@@ -183,6 +183,7 @@ namespace SnakeClassLib
                 EmptyFieldCreated(this);
             }
         }
+
     }
     public class SnakeField : Field
     {
@@ -191,6 +192,7 @@ namespace SnakeClassLib
 
         public delegate void SnakeFieldSmoothCreationEventHandler(SnakeField sender);
         public static event SnakeFieldSmoothCreationEventHandler SnakeFieldSmoothCreation;
+
         public SnakeField(int row, int col,Directions drawDirection)
             : base(row, col,drawDirection)
         {

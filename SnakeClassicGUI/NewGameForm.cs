@@ -12,13 +12,7 @@ namespace SnakeClassicGUI
 {
     public partial class NewGameForm : Form
     {
-        private Dictionary<int,string> speed;
-
-        public Dictionary<int,string> Speed
-        {
-            get { return speed; }
-            set { speed = value; }
-        }
+        
 
         private SnakeMainForm ownerForm;
         public NewGameForm(SnakeMainForm owner)
@@ -31,21 +25,9 @@ namespace SnakeClassicGUI
 
         private void ConfigureFormControls()
         {
-            speed = new Dictionary<int, string>();
-            speed.Add(500, "2 Fields/Sec");
-            speed.Add(200, "5 Fields/Sec");
-            speed.Add(125, "8 Fields/Sec");
-            speed.Add(100, "10 Fields/Sec");
-            speed.Add(75, "13 Fields/Sec");
-            speed.Add(65, "15 Fields/Sec");
-            speed.Add(50, "20 Fields/Sec");
-            speed.Add(30, "30 Fields/Sec");
-            speed.Add(25, "40 Fields/Sec");
-            speed.Add(20, "50 Fields/Sec");
-            speed.Add(15, "70 Fields/Sec");
-            speed.Add(10, "100 Fields/Sec");
+           
 
-            comboBoxTimeInterval.DataSource = new BindingSource(Speed, null);
+            comboBoxTimeInterval.DataSource = new BindingSource(this.ownerForm.Speed, null);
             comboBoxTimeInterval.DisplayMember = "Value";
             comboBoxTimeInterval.ValueMember = "Key";
             comboBoxTimeInterval.SelectedValue = SnakeClassicGUI.Properties.Game.Default.Speed;
@@ -72,6 +54,7 @@ namespace SnakeClassicGUI
                 default:
                     break;
             }
+            textBoxPlayerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
         }       
 
         private void buttonNewGame_Click(object sender, EventArgs e)
@@ -98,9 +81,11 @@ namespace SnakeClassicGUI
             ownerForm.GamePlatform = new GameMatrix(rows, cols,includeBorderWalls);
             ownerForm.TheSnake = new Snake(ownerForm.GamePlatform,snakeTimeInterval);
             ownerForm.TheSnake.CreateBasicSnake();
+
             ownerForm.TheSnake.GameOver += new Snake.GameOverEventHandler(ownerForm.theSnake_GameOver);
             ownerForm.TheSnake.RunChange += new Snake.SnakeRunningChangeEventHandler(ownerForm.theSnake_RunChange);
             ownerForm.Paint += new System.Windows.Forms.PaintEventHandler(ownerForm.SnakeMainForm_Paint);
+            ownerForm.LostFocus += new EventHandler(ownerForm.form_LostFocus);
           
 
             ownerForm.newGameToolStripMenuItem.Enabled = false;
@@ -112,6 +97,8 @@ namespace SnakeClassicGUI
                 SaveGameSettings(snakeTimeInterval, fieldSize, includeBorderWalls, includeSmoothGraphics);
             }
         }
+
+       
 
         private void SaveGameSettings(int snakeTimeInterval, int fieldSize, bool includeBorderWalls, bool includeSmoothGraphics)
         {
@@ -150,24 +137,30 @@ namespace SnakeClassicGUI
             {
                 rows = 25;
                 cols = 40;
-                
+                ownerForm.FieldSizeIndex = 1;
             }
             if (radioButton2.Checked)
             {
                 rows = 20;
                 cols = 35;
-                
+                ownerForm.FieldSizeIndex = 2;
             }
             if (radioButton3.Checked)
             {
                 rows = 15;
                 cols = 25;
+                ownerForm.FieldSizeIndex = 3;
                 if (fieldSize == 10) { tooSmall = true; }
             }
 
             if (checkBoxBorderWalls.Checked)
             {
                 includeBorderWalls = true;
+                ownerForm.IncludeBorderIndex = 3;
+            }
+            else
+            {
+                ownerForm.IncludeBorderIndex = 1;
             }
 
             if (checkBoxSmoothGraphic.Checked)
@@ -198,6 +191,17 @@ namespace SnakeClassicGUI
                 labelWarning.ForeColor = Color.Black;
                 labelWarning2.ForeColor = Color.Black;
             }
+        }
+
+        private void buttonPlayerNameChange_Click(object sender, EventArgs e)
+        {
+            FormGetName getPlayerName = new FormGetName();
+            getPlayerName.ShowDialog();
+            if (getPlayerName.isOkClicked)
+            {
+                SnakeClassicGUI.Properties.Game.Default.PlayerName = getPlayerName.GetName;
+            }
+            textBoxPlayerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
         }
 
     }

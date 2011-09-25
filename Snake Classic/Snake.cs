@@ -55,7 +55,6 @@ namespace SnakeClassLib
         Timer snakeTimer;    
         SnakeFragment headFragment;
 
-
         public delegate void GameOverEventHandler(object sender, GameOverEventArgs e);
         public event GameOverEventHandler GameOver;
 
@@ -257,6 +256,7 @@ namespace SnakeClassLib
             this.snakeBody.Add
                 (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this,this.Direction));
             this.SetHeadFragment();
+           
             EmptyUsedField();
             this.snakeBody.RemoveAt(0);           
         }        
@@ -265,6 +265,7 @@ namespace SnakeClassLib
             this.snakeBody.Add
                 (new SnakeFragment(directionField.Row, directionField.Col, gamePlatform.Matrix, this,this.Direction));
             this.SetHeadFragment();
+            
         }
         private void EmptyUsedField()
         {
@@ -295,6 +296,7 @@ namespace SnakeClassLib
         int row;
         int col;
         Directions drawDirection;
+       
 
         public Directions DrawDirection
         {
@@ -318,6 +320,7 @@ namespace SnakeClassLib
             this.Row = row;
             this.Col = col;
             this.drawDirection = drawDirection;
+           
             PutIntoMatrix(this.Row, this.Col, currentMatrix,drawDirection);
         }        
 
