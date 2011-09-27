@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.labelResult = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -47,6 +47,13 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBoxMessages = new System.Windows.Forms.TextBox();
             this.dataGridViewResult = new System.Windows.Forms.DataGridView();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SnakeLenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FieldSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Borders = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelPlace = new System.Windows.Forms.Label();
             this.buttonShowTopResult = new System.Windows.Forms.Button();
             this.textBoxResultNumber = new System.Windows.Forms.TextBox();
@@ -57,13 +64,6 @@
             this.textBoxPlayerName = new System.Windows.Forms.TextBox();
             this.labelPlayerName = new System.Windows.Forms.Label();
             this.buttonChangeName = new System.Windows.Forms.Button();
-            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SnakeLenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Speed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FieldSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Borders = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.labelAllRecNumber = new System.Windows.Forms.Label();
             this.buttonShowAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResult)).BeginInit();
@@ -170,7 +170,7 @@
             this.buttonOk.Location = new System.Drawing.Point(591, 214);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(115, 38);
-            this.buttonOk.TabIndex = 9;
+            this.buttonOk.TabIndex = 4;
             this.buttonOk.Text = "Close";
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonClose_Click);
@@ -180,7 +180,7 @@
             this.buttonNewGame.Location = new System.Drawing.Point(591, 89);
             this.buttonNewGame.Name = "buttonNewGame";
             this.buttonNewGame.Size = new System.Drawing.Size(115, 38);
-            this.buttonNewGame.TabIndex = 10;
+            this.buttonNewGame.TabIndex = 3;
             this.buttonNewGame.Text = "New Game";
             this.buttonNewGame.UseVisualStyleBackColor = true;
             this.buttonNewGame.Click += new System.EventHandler(this.buttonClose_Click);
@@ -190,7 +190,7 @@
             this.buttonSaveResult.Location = new System.Drawing.Point(139, 96);
             this.buttonSaveResult.Name = "buttonSaveResult";
             this.buttonSaveResult.Size = new System.Drawing.Size(115, 43);
-            this.buttonSaveResult.TabIndex = 11;
+            this.buttonSaveResult.TabIndex = 2;
             this.buttonSaveResult.Text = "Save Result";
             this.buttonSaveResult.UseVisualStyleBackColor = true;
             this.buttonSaveResult.Click += new System.EventHandler(this.buttonSaveResult_Click);
@@ -226,14 +226,14 @@
             this.dataGridViewResult.AllowUserToDeleteRows = false;
             this.dataGridViewResult.AllowUserToResizeColumns = false;
             this.dataGridViewResult.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewResult.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewResult.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Score,
@@ -243,118 +243,28 @@
             this.FieldSize,
             this.Borders,
             this.Date});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewResult.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewResult.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewResult.Location = new System.Drawing.Point(12, 265);
             this.dataGridViewResult.Name = "dataGridViewResult";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewResult.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewResult.RowHeadersWidth = 10;
             this.dataGridViewResult.Size = new System.Drawing.Size(730, 157);
             this.dataGridViewResult.TabIndex = 17;
-            // 
-            // labelPlace
-            // 
-            this.labelPlace.AutoSize = true;
-            this.labelPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPlace.Location = new System.Drawing.Point(8, 143);
-            this.labelPlace.Name = "labelPlace";
-            this.labelPlace.Size = new System.Drawing.Size(43, 17);
-            this.labelPlace.TabIndex = 18;
-            this.labelPlace.Text = "Place";
-            // 
-            // buttonShowTopResult
-            // 
-            this.buttonShowTopResult.Location = new System.Drawing.Point(11, 236);
-            this.buttonShowTopResult.Name = "buttonShowTopResult";
-            this.buttonShowTopResult.Size = new System.Drawing.Size(64, 23);
-            this.buttonShowTopResult.TabIndex = 19;
-            this.buttonShowTopResult.Text = "Show top:";
-            this.buttonShowTopResult.UseVisualStyleBackColor = true;
-            this.buttonShowTopResult.Click += new System.EventHandler(this.buttonShowTopResult_Click);
-            // 
-            // textBoxResultNumber
-            // 
-            this.textBoxResultNumber.Location = new System.Drawing.Point(81, 238);
-            this.textBoxResultNumber.Name = "textBoxResultNumber";
-            this.textBoxResultNumber.Size = new System.Drawing.Size(31, 20);
-            this.textBoxResultNumber.TabIndex = 20;
-            // 
-            // buttonDeteFrom
-            // 
-            this.buttonDeteFrom.Location = new System.Drawing.Point(129, 236);
-            this.buttonDeteFrom.Name = "buttonDeteFrom";
-            this.buttonDeteFrom.Size = new System.Drawing.Size(75, 23);
-            this.buttonDeteFrom.TabIndex = 21;
-            this.buttonDeteFrom.Text = "Delete from:";
-            this.buttonDeteFrom.UseVisualStyleBackColor = true;
-            this.buttonDeteFrom.Click += new System.EventHandler(this.buttonDeteFrom_Click);
-            // 
-            // textBoxDeleteFrom
-            // 
-            this.textBoxDeleteFrom.Location = new System.Drawing.Point(210, 238);
-            this.textBoxDeleteFrom.Name = "textBoxDeleteFrom";
-            this.textBoxDeleteFrom.Size = new System.Drawing.Size(31, 20);
-            this.textBoxDeleteFrom.TabIndex = 22;
-            // 
-            // buttonDeleteAll
-            // 
-            this.buttonDeleteAll.Location = new System.Drawing.Point(259, 236);
-            this.buttonDeleteAll.Name = "buttonDeleteAll";
-            this.buttonDeleteAll.Size = new System.Drawing.Size(75, 23);
-            this.buttonDeleteAll.TabIndex = 23;
-            this.buttonDeleteAll.Text = "Delete All";
-            this.buttonDeleteAll.UseVisualStyleBackColor = true;
-            this.buttonDeleteAll.Click += new System.EventHandler(this.buttonDeleteAll_Click);
-            // 
-            // labelSavingInfo
-            // 
-            this.labelSavingInfo.AutoSize = true;
-            this.labelSavingInfo.Location = new System.Drawing.Point(12, 169);
-            this.labelSavingInfo.Name = "labelSavingInfo";
-            this.labelSavingInfo.Size = new System.Drawing.Size(188, 13);
-            this.labelSavingInfo.TabIndex = 24;
-            this.labelSavingInfo.Text = "Only the top 5 records are auto-saved!";
-            // 
-            // textBoxPlayerName
-            // 
-            this.textBoxPlayerName.Enabled = false;
-            this.textBoxPlayerName.Location = new System.Drawing.Point(12, 210);
-            this.textBoxPlayerName.Name = "textBoxPlayerName";
-            this.textBoxPlayerName.ReadOnly = true;
-            this.textBoxPlayerName.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPlayerName.TabIndex = 25;
-            // 
-            // labelPlayerName
-            // 
-            this.labelPlayerName.AutoSize = true;
-            this.labelPlayerName.Location = new System.Drawing.Point(12, 194);
-            this.labelPlayerName.Name = "labelPlayerName";
-            this.labelPlayerName.Size = new System.Drawing.Size(39, 13);
-            this.labelPlayerName.TabIndex = 26;
-            this.labelPlayerName.Text = "Player:";
-            // 
-            // buttonChangeName
-            // 
-            this.buttonChangeName.Location = new System.Drawing.Point(129, 207);
-            this.buttonChangeName.Name = "buttonChangeName";
-            this.buttonChangeName.Size = new System.Drawing.Size(75, 23);
-            this.buttonChangeName.TabIndex = 27;
-            this.buttonChangeName.Text = "Change";
-            this.buttonChangeName.UseVisualStyleBackColor = true;
-            this.buttonChangeName.Click += new System.EventHandler(this.buttonChangeName_Click);
+            this.dataGridViewResult.TabStop = false;
             // 
             // Score
             // 
@@ -391,6 +301,97 @@
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
             // 
+            // labelPlace
+            // 
+            this.labelPlace.AutoSize = true;
+            this.labelPlace.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPlace.Location = new System.Drawing.Point(8, 143);
+            this.labelPlace.Name = "labelPlace";
+            this.labelPlace.Size = new System.Drawing.Size(43, 17);
+            this.labelPlace.TabIndex = 18;
+            this.labelPlace.Text = "Place";
+            // 
+            // buttonShowTopResult
+            // 
+            this.buttonShowTopResult.Location = new System.Drawing.Point(11, 236);
+            this.buttonShowTopResult.Name = "buttonShowTopResult";
+            this.buttonShowTopResult.Size = new System.Drawing.Size(64, 23);
+            this.buttonShowTopResult.TabIndex = 6;
+            this.buttonShowTopResult.Text = "Show top:";
+            this.buttonShowTopResult.UseVisualStyleBackColor = true;
+            this.buttonShowTopResult.Click += new System.EventHandler(this.buttonShowTopResult_Click);
+            // 
+            // textBoxResultNumber
+            // 
+            this.textBoxResultNumber.Location = new System.Drawing.Point(81, 238);
+            this.textBoxResultNumber.Name = "textBoxResultNumber";
+            this.textBoxResultNumber.Size = new System.Drawing.Size(31, 20);
+            this.textBoxResultNumber.TabIndex = 5;
+            // 
+            // buttonDeteFrom
+            // 
+            this.buttonDeteFrom.Location = new System.Drawing.Point(129, 236);
+            this.buttonDeteFrom.Name = "buttonDeteFrom";
+            this.buttonDeteFrom.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeteFrom.TabIndex = 8;
+            this.buttonDeteFrom.Text = "Delete from:";
+            this.buttonDeteFrom.UseVisualStyleBackColor = true;
+            this.buttonDeteFrom.Click += new System.EventHandler(this.buttonDeteFrom_Click);
+            // 
+            // textBoxDeleteFrom
+            // 
+            this.textBoxDeleteFrom.Location = new System.Drawing.Point(210, 238);
+            this.textBoxDeleteFrom.Name = "textBoxDeleteFrom";
+            this.textBoxDeleteFrom.Size = new System.Drawing.Size(31, 20);
+            this.textBoxDeleteFrom.TabIndex = 7;
+            // 
+            // buttonDeleteAll
+            // 
+            this.buttonDeleteAll.Location = new System.Drawing.Point(259, 236);
+            this.buttonDeleteAll.Name = "buttonDeleteAll";
+            this.buttonDeleteAll.Size = new System.Drawing.Size(75, 23);
+            this.buttonDeleteAll.TabIndex = 9;
+            this.buttonDeleteAll.Text = "Delete All";
+            this.buttonDeleteAll.UseVisualStyleBackColor = true;
+            this.buttonDeleteAll.Click += new System.EventHandler(this.buttonDeleteAll_Click);
+            // 
+            // labelSavingInfo
+            // 
+            this.labelSavingInfo.AutoSize = true;
+            this.labelSavingInfo.Location = new System.Drawing.Point(12, 169);
+            this.labelSavingInfo.Name = "labelSavingInfo";
+            this.labelSavingInfo.Size = new System.Drawing.Size(188, 13);
+            this.labelSavingInfo.TabIndex = 24;
+            this.labelSavingInfo.Text = "Only the top 5 records are auto-saved!";
+            // 
+            // textBoxPlayerName
+            // 
+            this.textBoxPlayerName.Enabled = false;
+            this.textBoxPlayerName.Location = new System.Drawing.Point(12, 210);
+            this.textBoxPlayerName.Name = "textBoxPlayerName";
+            this.textBoxPlayerName.ReadOnly = true;
+            this.textBoxPlayerName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPlayerName.TabIndex = 25;
+            // 
+            // labelPlayerName
+            // 
+            this.labelPlayerName.AutoSize = true;
+            this.labelPlayerName.Location = new System.Drawing.Point(12, 194);
+            this.labelPlayerName.Name = "labelPlayerName";
+            this.labelPlayerName.Size = new System.Drawing.Size(39, 13);
+            this.labelPlayerName.TabIndex = 26;
+            this.labelPlayerName.Text = "Player:";
+            // 
+            // buttonChangeName
+            // 
+            this.buttonChangeName.Location = new System.Drawing.Point(129, 207);
+            this.buttonChangeName.Name = "buttonChangeName";
+            this.buttonChangeName.Size = new System.Drawing.Size(75, 23);
+            this.buttonChangeName.TabIndex = 1;
+            this.buttonChangeName.Text = "Change";
+            this.buttonChangeName.UseVisualStyleBackColor = true;
+            this.buttonChangeName.Click += new System.EventHandler(this.buttonChangeName_Click);
+            // 
             // labelAllRecNumber
             // 
             this.labelAllRecNumber.AutoSize = true;
@@ -406,7 +407,7 @@
             this.buttonShowAll.Location = new System.Drawing.Point(369, 235);
             this.buttonShowAll.Name = "buttonShowAll";
             this.buttonShowAll.Size = new System.Drawing.Size(75, 23);
-            this.buttonShowAll.TabIndex = 38;
+            this.buttonShowAll.TabIndex = 10;
             this.buttonShowAll.Text = "Show All";
             this.buttonShowAll.UseVisualStyleBackColor = true;
             this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);

@@ -57,7 +57,7 @@
             this.buttonNewGame.Location = new System.Drawing.Point(15, 331);
             this.buttonNewGame.Name = "buttonNewGame";
             this.buttonNewGame.Size = new System.Drawing.Size(124, 28);
-            this.buttonNewGame.TabIndex = 7;
+            this.buttonNewGame.TabIndex = 8;
             this.buttonNewGame.Text = "New game";
             this.buttonNewGame.UseVisualStyleBackColor = true;
             this.buttonNewGame.Click += new System.EventHandler(this.buttonNewGame_Click);
@@ -67,7 +67,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(145, 331);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(127, 28);
-            this.buttonCancel.TabIndex = 8;
+            this.buttonCancel.TabIndex = 9;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -133,7 +133,7 @@
             this.groupBoxFieldSize.Location = new System.Drawing.Point(145, 12);
             this.groupBoxFieldSize.Name = "groupBoxFieldSize";
             this.groupBoxFieldSize.Size = new System.Drawing.Size(116, 128);
-            this.groupBoxFieldSize.TabIndex = 12;
+            this.groupBoxFieldSize.TabIndex = 3;
             this.groupBoxFieldSize.TabStop = false;
             this.groupBoxFieldSize.Text = "Field Size";
             // 
@@ -167,7 +167,7 @@
             this.checkBoxBorderWalls.Location = new System.Drawing.Point(15, 123);
             this.checkBoxBorderWalls.Name = "checkBoxBorderWalls";
             this.checkBoxBorderWalls.Size = new System.Drawing.Size(124, 17);
-            this.checkBoxBorderWalls.TabIndex = 6;
+            this.checkBoxBorderWalls.TabIndex = 4;
             this.checkBoxBorderWalls.Text = "Include Border Walls";
             this.checkBoxBorderWalls.UseVisualStyleBackColor = true;
             // 
@@ -177,7 +177,7 @@
             this.checkBoxSmoothGraphic.Location = new System.Drawing.Point(15, 147);
             this.checkBoxSmoothGraphic.Name = "checkBoxSmoothGraphic";
             this.checkBoxSmoothGraphic.Size = new System.Drawing.Size(107, 17);
-            this.checkBoxSmoothGraphic.TabIndex = 13;
+            this.checkBoxSmoothGraphic.TabIndex = 5;
             this.checkBoxSmoothGraphic.Text = "Smooth Graphics";
             this.checkBoxSmoothGraphic.UseVisualStyleBackColor = true;
             this.checkBoxSmoothGraphic.CheckedChanged += new System.EventHandler(this.checkBoxSmoothGraphic_CheckedChanged);
@@ -206,7 +206,7 @@
             this.checkBoxDefGameOptions.Location = new System.Drawing.Point(15, 210);
             this.checkBoxDefGameOptions.Name = "checkBoxDefGameOptions";
             this.checkBoxDefGameOptions.Size = new System.Drawing.Size(176, 17);
-            this.checkBoxDefGameOptions.TabIndex = 17;
+            this.checkBoxDefGameOptions.TabIndex = 6;
             this.checkBoxDefGameOptions.Text = "Save these options as prefered.";
             this.checkBoxDefGameOptions.UseVisualStyleBackColor = true;
             // 
@@ -242,7 +242,7 @@
             this.buttonPlayerNameChange.Location = new System.Drawing.Point(195, 235);
             this.buttonPlayerNameChange.Name = "buttonPlayerNameChange";
             this.buttonPlayerNameChange.Size = new System.Drawing.Size(77, 23);
-            this.buttonPlayerNameChange.TabIndex = 21;
+            this.buttonPlayerNameChange.TabIndex = 7;
             this.buttonPlayerNameChange.Text = "Change";
             this.buttonPlayerNameChange.UseVisualStyleBackColor = true;
             this.buttonPlayerNameChange.Click += new System.EventHandler(this.buttonPlayerNameChange_Click);

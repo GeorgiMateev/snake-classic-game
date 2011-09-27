@@ -38,8 +38,6 @@
             this.buttonDeleteFrom = new System.Windows.Forms.Button();
             this.buttonShowNumberResults = new System.Windows.Forms.Button();
             this.dataGridViewResult = new System.Windows.Forms.DataGridView();
-            this.buttonClose = new System.Windows.Forms.Button();
-            this.textBoxMessages = new System.Windows.Forms.TextBox();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SnakeLenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +45,8 @@
             this.FieldSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Borders = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.textBoxMessages = new System.Windows.Forms.TextBox();
             this.buttonShowAll = new System.Windows.Forms.Button();
             this.labelAllRecNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResult)).BeginInit();
@@ -57,7 +57,7 @@
             this.textBoxResultNumber.Location = new System.Drawing.Point(84, 22);
             this.textBoxResultNumber.Name = "textBoxResultNumber";
             this.textBoxResultNumber.Size = new System.Drawing.Size(31, 20);
-            this.textBoxResultNumber.TabIndex = 26;
+            this.textBoxResultNumber.TabIndex = 1;
             // 
             // buttonShowTopResult
             // 
@@ -73,7 +73,7 @@
             this.buttonDeleteAll.Location = new System.Drawing.Point(668, 22);
             this.buttonDeleteAll.Name = "buttonDeleteAll";
             this.buttonDeleteAll.Size = new System.Drawing.Size(75, 23);
-            this.buttonDeleteAll.TabIndex = 32;
+            this.buttonDeleteAll.TabIndex = 6;
             this.buttonDeleteAll.Text = "Delete All";
             this.buttonDeleteAll.UseVisualStyleBackColor = true;
             this.buttonDeleteAll.Click += new System.EventHandler(this.buttonDeleteAll_Click);
@@ -83,14 +83,14 @@
             this.textBoxDeleteFrom.Location = new System.Drawing.Point(213, 22);
             this.textBoxDeleteFrom.Name = "textBoxDeleteFrom";
             this.textBoxDeleteFrom.Size = new System.Drawing.Size(31, 20);
-            this.textBoxDeleteFrom.TabIndex = 31;
+            this.textBoxDeleteFrom.TabIndex = 3;
             // 
             // buttonDeleteFrom
             // 
             this.buttonDeleteFrom.Location = new System.Drawing.Point(132, 19);
             this.buttonDeleteFrom.Name = "buttonDeleteFrom";
             this.buttonDeleteFrom.Size = new System.Drawing.Size(75, 23);
-            this.buttonDeleteFrom.TabIndex = 30;
+            this.buttonDeleteFrom.TabIndex = 4;
             this.buttonDeleteFrom.Text = "Delete from:";
             this.buttonDeleteFrom.UseVisualStyleBackColor = true;
             this.buttonDeleteFrom.Click += new System.EventHandler(this.buttonDeleteFrom_Click);
@@ -100,7 +100,7 @@
             this.buttonShowNumberResults.Location = new System.Drawing.Point(14, 19);
             this.buttonShowNumberResults.Name = "buttonShowNumberResults";
             this.buttonShowNumberResults.Size = new System.Drawing.Size(64, 23);
-            this.buttonShowNumberResults.TabIndex = 28;
+            this.buttonShowNumberResults.TabIndex = 2;
             this.buttonShowNumberResults.Text = "Show top:";
             this.buttonShowNumberResults.UseVisualStyleBackColor = true;
             this.buttonShowNumberResults.Click += new System.EventHandler(this.buttonShowNumberResults_Click);
@@ -149,26 +149,7 @@
             this.dataGridViewResult.RowHeadersWidth = 10;
             this.dataGridViewResult.Size = new System.Drawing.Size(731, 306);
             this.dataGridViewResult.TabIndex = 27;
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Location = new System.Drawing.Point(668, 382);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(75, 23);
-            this.buttonClose.TabIndex = 33;
-            this.buttonClose.Text = "Close";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // textBoxMessages
-            // 
-            this.textBoxMessages.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBoxMessages.Enabled = false;
-            this.textBoxMessages.Location = new System.Drawing.Point(0, 411);
-            this.textBoxMessages.Name = "textBoxMessages";
-            this.textBoxMessages.ReadOnly = true;
-            this.textBoxMessages.Size = new System.Drawing.Size(757, 20);
-            this.textBoxMessages.TabIndex = 34;
+            this.dataGridViewResult.TabStop = false;
             // 
             // Score
             // 
@@ -205,12 +186,32 @@
             this.Date.HeaderText = "Date";
             this.Date.Name = "Date";
             // 
+            // buttonClose
+            // 
+            this.buttonClose.Location = new System.Drawing.Point(668, 382);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(75, 23);
+            this.buttonClose.TabIndex = 7;
+            this.buttonClose.Text = "Close";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // textBoxMessages
+            // 
+            this.textBoxMessages.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.textBoxMessages.Enabled = false;
+            this.textBoxMessages.Location = new System.Drawing.Point(0, 411);
+            this.textBoxMessages.Name = "textBoxMessages";
+            this.textBoxMessages.ReadOnly = true;
+            this.textBoxMessages.Size = new System.Drawing.Size(757, 20);
+            this.textBoxMessages.TabIndex = 34;
+            // 
             // buttonShowAll
             // 
             this.buttonShowAll.Location = new System.Drawing.Point(277, 20);
             this.buttonShowAll.Name = "buttonShowAll";
             this.buttonShowAll.Size = new System.Drawing.Size(75, 23);
-            this.buttonShowAll.TabIndex = 35;
+            this.buttonShowAll.TabIndex = 5;
             this.buttonShowAll.Text = "Show All";
             this.buttonShowAll.UseVisualStyleBackColor = true;
             this.buttonShowAll.Click += new System.EventHandler(this.buttonShowAll_Click);

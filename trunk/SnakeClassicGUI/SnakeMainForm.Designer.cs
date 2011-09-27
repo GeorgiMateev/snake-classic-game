@@ -186,7 +186,7 @@ namespace SnakeClassicGUI
             this.buttonNewGame.Location = new System.Drawing.Point(157, 362);
             this.buttonNewGame.Name = "buttonNewGame";
             this.buttonNewGame.Size = new System.Drawing.Size(105, 31);
-            this.buttonNewGame.TabIndex = 12;
+            this.buttonNewGame.TabIndex = 1;
             this.buttonNewGame.Text = "New Game";
             this.buttonNewGame.UseVisualStyleBackColor = true;
             this.buttonNewGame.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
@@ -196,7 +196,7 @@ namespace SnakeClassicGUI
             this.buttonOptions.Location = new System.Drawing.Point(157, 436);
             this.buttonOptions.Name = "buttonOptions";
             this.buttonOptions.Size = new System.Drawing.Size(105, 31);
-            this.buttonOptions.TabIndex = 12;
+            this.buttonOptions.TabIndex = 3;
             this.buttonOptions.Text = "Options";
             this.buttonOptions.UseVisualStyleBackColor = true;
             this.buttonOptions.Click += new System.EventHandler(this.colorsToolStripMenuColors_Click);
@@ -206,7 +206,7 @@ namespace SnakeClassicGUI
             this.buttonExit.Location = new System.Drawing.Point(157, 473);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(105, 31);
-            this.buttonExit.TabIndex = 12;
+            this.buttonExit.TabIndex = 4;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.toolStripButtonClose_Click);
@@ -216,7 +216,7 @@ namespace SnakeClassicGUI
             this.buttonResults.Location = new System.Drawing.Point(157, 399);
             this.buttonResults.Name = "buttonResults";
             this.buttonResults.Size = new System.Drawing.Size(105, 31);
-            this.buttonResults.TabIndex = 13;
+            this.buttonResults.TabIndex = 2;
             this.buttonResults.Text = "Results";
             this.buttonResults.UseVisualStyleBackColor = true;
             this.buttonResults.Click += new System.EventHandler(this.buttonResults_Click);
