@@ -1,0 +1,5 @@
+D:\Informacionni tehnologii\C#_Projects\Snake Classic\Snake Classic\obj\Debug\ResolveAssemblyReference.cache
+D:\Informacionni tehnologii\C#_Projects\Snake Classic\Snake Classic\bin\Debug\Snake Classic.dll
+D:\Informacionni tehnologii\C#_Projects\Snake Classic\Snake Classic\bin\Debug\Snake Classic.pdb
+D:\Informacionni tehnologii\C#_Projects\Snake Classic\Snake Classic\obj\Debug\Snake Classic.dll
+D:\Informacionni tehnologii\C#_Projects\Snake Classic\Snake Classic\obj\Debug\Snake Classic.pdb
