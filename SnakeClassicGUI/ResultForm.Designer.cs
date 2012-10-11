@@ -38,6 +38,10 @@
             this.buttonDeleteFrom = new System.Windows.Forms.Button();
             this.buttonShowNumberResults = new System.Windows.Forms.Button();
             this.dataGridViewResult = new System.Windows.Forms.DataGridView();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.textBoxMessages = new System.Windows.Forms.TextBox();
+            this.buttonShowAll = new System.Windows.Forms.Button();
+            this.labelAllRecNumber = new System.Windows.Forms.Label();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Owner = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SnakeLenght = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,10 +49,6 @@
             this.FieldSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Borders = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonClose = new System.Windows.Forms.Button();
-            this.textBoxMessages = new System.Windows.Forms.TextBox();
-            this.buttonShowAll = new System.Windows.Forms.Button();
-            this.labelAllRecNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewResult)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,14 +80,14 @@
             // 
             // textBoxDeleteFrom
             // 
-            this.textBoxDeleteFrom.Location = new System.Drawing.Point(213, 22);
+            this.textBoxDeleteFrom.Location = new System.Drawing.Point(598, 25);
             this.textBoxDeleteFrom.Name = "textBoxDeleteFrom";
             this.textBoxDeleteFrom.Size = new System.Drawing.Size(31, 20);
             this.textBoxDeleteFrom.TabIndex = 3;
             // 
             // buttonDeleteFrom
             // 
-            this.buttonDeleteFrom.Location = new System.Drawing.Point(132, 19);
+            this.buttonDeleteFrom.Location = new System.Drawing.Point(517, 22);
             this.buttonDeleteFrom.Name = "buttonDeleteFrom";
             this.buttonDeleteFrom.Size = new System.Drawing.Size(75, 23);
             this.buttonDeleteFrom.TabIndex = 4;
@@ -138,6 +138,7 @@
             this.dataGridViewResult.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewResult.Location = new System.Drawing.Point(12, 70);
             this.dataGridViewResult.Name = "dataGridViewResult";
+            this.dataGridViewResult.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -150,41 +151,6 @@
             this.dataGridViewResult.Size = new System.Drawing.Size(731, 306);
             this.dataGridViewResult.TabIndex = 27;
             this.dataGridViewResult.TabStop = false;
-            // 
-            // Score
-            // 
-            this.Score.HeaderText = "Score";
-            this.Score.Name = "Score";
-            // 
-            // Owner
-            // 
-            this.Owner.HeaderText = "Owner";
-            this.Owner.Name = "Owner";
-            // 
-            // SnakeLenght
-            // 
-            this.SnakeLenght.HeaderText = "Snake Lenght";
-            this.SnakeLenght.Name = "SnakeLenght";
-            // 
-            // Speed
-            // 
-            this.Speed.HeaderText = "Speed";
-            this.Speed.Name = "Speed";
-            // 
-            // FieldSize
-            // 
-            this.FieldSize.HeaderText = "Field Size";
-            this.FieldSize.Name = "FieldSize";
-            // 
-            // Borders
-            // 
-            this.Borders.HeaderText = "Borders";
-            this.Borders.Name = "Borders";
-            // 
-            // Date
-            // 
-            this.Date.HeaderText = "Date";
-            this.Date.Name = "Date";
             // 
             // buttonClose
             // 
@@ -208,7 +174,7 @@
             // 
             // buttonShowAll
             // 
-            this.buttonShowAll.Location = new System.Drawing.Point(277, 20);
+            this.buttonShowAll.Location = new System.Drawing.Point(121, 20);
             this.buttonShowAll.Name = "buttonShowAll";
             this.buttonShowAll.Size = new System.Drawing.Size(75, 23);
             this.buttonShowAll.TabIndex = 5;
@@ -220,11 +186,60 @@
             // 
             this.labelAllRecNumber.AutoSize = true;
             this.labelAllRecNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelAllRecNumber.Location = new System.Drawing.Point(401, 22);
+            this.labelAllRecNumber.Location = new System.Drawing.Point(213, 22);
             this.labelAllRecNumber.Name = "labelAllRecNumber";
             this.labelAllRecNumber.Size = new System.Drawing.Size(75, 17);
             this.labelAllRecNumber.TabIndex = 36;
             this.labelAllRecNumber.Text = "All records";
+            // 
+            // Score
+            // 
+            this.Score.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
+            this.Score.ReadOnly = true;
+            // 
+            // Owner
+            // 
+            this.Owner.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Owner.HeaderText = "Owner";
+            this.Owner.Name = "Owner";
+            this.Owner.ReadOnly = true;
+            // 
+            // SnakeLenght
+            // 
+            this.SnakeLenght.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.SnakeLenght.HeaderText = "Snake Lenght";
+            this.SnakeLenght.Name = "SnakeLenght";
+            this.SnakeLenght.ReadOnly = true;
+            // 
+            // Speed
+            // 
+            this.Speed.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Speed.HeaderText = "Speed";
+            this.Speed.Name = "Speed";
+            this.Speed.ReadOnly = true;
+            // 
+            // FieldSize
+            // 
+            this.FieldSize.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.FieldSize.HeaderText = "Field Size";
+            this.FieldSize.Name = "FieldSize";
+            this.FieldSize.ReadOnly = true;
+            // 
+            // Borders
+            // 
+            this.Borders.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Borders.HeaderText = "Borders";
+            this.Borders.Name = "Borders";
+            this.Borders.ReadOnly = true;
+            // 
+            // Date
+            // 
+            this.Date.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            this.Date.ReadOnly = true;
             // 
             // ResultForm
             // 
@@ -261,6 +276,8 @@
         private System.Windows.Forms.DataGridView dataGridViewResult;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.TextBox textBoxMessages;
+        private System.Windows.Forms.Button buttonShowAll;
+        private System.Windows.Forms.Label labelAllRecNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn Score;
         private System.Windows.Forms.DataGridViewTextBoxColumn Owner;
         private System.Windows.Forms.DataGridViewTextBoxColumn SnakeLenght;
@@ -268,7 +285,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FieldSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn Borders;
         private System.Windows.Forms.DataGridViewTextBoxColumn Date;
-        private System.Windows.Forms.Button buttonShowAll;
-        private System.Windows.Forms.Label labelAllRecNumber;
     }
 }

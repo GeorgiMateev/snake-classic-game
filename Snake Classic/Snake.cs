@@ -45,11 +45,9 @@ namespace SnakeClassLib
     }
 
     public class Snake
-    {      
-
+    {
         Directions direction;
         bool running;
-        int changedDirectionCount;       
         List<SnakeFragment> snakeBody;
         GameMatrix gamePlatform;
         Timer snakeTimer;    
@@ -86,16 +84,10 @@ namespace SnakeClassLib
             get { return direction; }
             set { direction = value; }
         }
-        public int ChangedDirectionCount
-        {
-            get { return changedDirectionCount; }
-            set { changedDirectionCount = value; }
-        }
-
+        
         public Snake(GameMatrix gamePlatform,int timeInterval)
         {
             Direction = Directions.Left;
-            changedDirectionCount=0;
             this.gamePlatform = gamePlatform;
             this.snakeBody = new List<SnakeFragment>();           
             this.snakeTimer = new Timer();
