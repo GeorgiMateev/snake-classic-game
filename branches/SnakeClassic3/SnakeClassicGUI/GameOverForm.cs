@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using SnakeClassLib;
 using DataDealer;
+using System.Threading;
 
 namespace SnakeClassicGUI
 {
@@ -40,14 +41,13 @@ namespace SnakeClassicGUI
             InitializeComponent();
             this.ownerForm = ownerForm;
             this.labelResult.Text = ownerForm.TheSnake.SnakeBody.Count.ToString();
-            this.labelChangedDirection.Text = ownerForm.TheSnake.ChangedDirectionCount.ToString();
             this.labelSpeed.Text = ownerForm.Speed[ownerForm.TheSnake.SnakeTimer.Interval]+"F/Sec";
             this.labelField.Text = ownerForm.GamePlatform.Rows + " X " + ownerForm.GamePlatform.Colums;
             this.labelScore.Text = this.GameScore.ToString();
             this.textBoxPlayerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
 
-            this.buttonNewGame.Click+=new EventHandler(buttonClose_Click);
-            this.buttonNewGame.Click += new EventHandler(this.ownerForm.newGameToolStripMenuItem_Click);
+            //this.buttonNewGame.Click += new EventHandler(buttonClose_Click);
+            //this.buttonNewGame.Click += new EventHandler(this.ownerForm.newGameToolStripMenuItem_Click);
 
             CurrentResult = new Result(this.GameScore,ownerForm.TheSnake.SnakeBody.Count, ownerForm.Speed[ownerForm.TheSnake.SnakeTimer.Interval] + "F/Sec",
                 ownerForm.FieldSize[ownerForm.FieldSizeIndex], ownerForm.IncludeBorderIndex);
@@ -57,18 +57,7 @@ namespace SnakeClassicGUI
             labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
         }
 
-        private void buttonClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-
-           this.ownerForm.Invalidate();
-           
-           DisconnectOldFormFromEvents();
-          
-           StartGUI.snakeMainForm = new SnakeMainForm();
-
-           ConfigureNewSnakeMainFormUsability();
-        }
+        
 
         private void ConfigureNewSnakeMainFormUsability()
         {
@@ -80,8 +69,6 @@ namespace SnakeClassicGUI
             this.ownerForm.toolStripStatusLabelRunning.Text = "Ready";
             this.ownerForm.toolStripStatusLabelElapsedTime.Text = "";
             this.ownerForm.toolStripStatusLabelResult.Text = "";
-            this.ownerForm.toolStripStatusLabelTurn.Text = "";
-            this.ownerForm.textBoxError.Text = "";
             this.ownerForm.BackgroundImage = SnakeClassicGUI.Properties.Resources.SnakeBG;
             this.ownerForm.buttonNewGame.Enabled = true;
             this.ownerForm.buttonOptions.Enabled = true;
@@ -122,7 +109,7 @@ namespace SnakeClassicGUI
             bool isExecuted = CurrentResult.SaveResult();
             if (isExecuted)
             {
-                 textBoxMessages.Text = "The result is saved!";
+                 toolStripStatusLabel.Text = "The result is saved!";
                  buttonSaveResult.Enabled = false;
                  buttonChangeName.Enabled = false;
             }            
@@ -139,13 +126,15 @@ namespace SnakeClassicGUI
             }
             if (CurrentResult.Place <=5 && CurrentResult.Place > 1)
             {
-                labelPlace.Text = "Your place is " + CurrentResult.CheckResultPlace()+"! You are in the top 5!";
+                labelPlace.Text = "Your place is " + CurrentResult.CheckResultPlace()+"!";
                 labelPlace.ForeColor = Color.Red;
                 this.buttonSaveResult_Click(this, new EventArgs());
             }
             if (CurrentResult.Place > 5)
             {
                 labelPlace.Text = "Your place is " + CurrentResult.CheckResultPlace();
+                this.labelSavingInfo.Visible = true;
+                this.buttonSaveResult.Visible = true;
             }
         }
 
@@ -168,11 +157,11 @@ namespace SnakeClassicGUI
            
             catch (FormatException err)
             {
-                textBoxMessages.Text = err.Message;
+                toolStripStatusLabel.Text = err.Message;
             }
             catch (ArgumentOutOfRangeException err)
             {
-                textBoxMessages.Text = err.Message;
+                toolStripStatusLabel.Text = err.Message;
             }
         }
 
@@ -196,11 +185,11 @@ namespace SnakeClassicGUI
             }
             catch (FormatException err)
             {
-                textBoxMessages.Text = err.Message;
+                toolStripStatusLabel.Text = err.Message;
             }
             catch (ArgumentOutOfRangeException err)
             {
-                textBoxMessages.Text = err.Message;
+                toolStripStatusLabel.Text = err.Message;
             }
         }
 
@@ -211,9 +200,10 @@ namespace SnakeClassicGUI
             if (result==DialogResult.Yes)
             {
                 Result.DeleteFrom(0);
+                toolStripStatusLabel.Text = "All records deleted!";
             }
             Result.DisplayResults(dataGridViewResult, 5);
-            textBoxMessages.Text = "All records deleted!";
+            
             labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
         }
 
@@ -232,6 +222,43 @@ namespace SnakeClassicGUI
         {
             Result.DisplayResults(dataGridViewResult);
         }
-  
+
+        private void buttonScoreInfo_MouseHover(object sender, EventArgs e)
+        {
+            this.textBoxScoreFormula.Visible = true;
+        }
+
+        private void buttonScoreInfo_MouseLeave(object sender, EventArgs e)
+        {
+            this.textBoxScoreFormula.Visible = false;
+        }
+
+        private void buttonNewGame_Click(object sender, EventArgs e)
+        {
+            this.FormClosed += new FormClosedEventHandler(FormGameOver_FormClosed);
+            this.Close();                                   
+        }
+
+        void FormGameOver_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.ownerForm.newGameToolStripMenuItem_Click(this, new EventArgs());            
+            this.FormClosed -= new FormClosedEventHandler(this.FormGameOver_FormClosed);
+        }
+
+        private void gameOverForm_Closing(object sender, EventArgs e)
+        {
+            this.ownerForm.Invalidate();
+
+            DisconnectOldFormFromEvents();
+
+            StartGUI.snakeMainForm = new SnakeMainForm();
+
+            ConfigureNewSnakeMainFormUsability();
+        }
+
+        private void buttonClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }                         
     }
 }

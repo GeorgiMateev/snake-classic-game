@@ -12,8 +12,6 @@ namespace SnakeClassicGUI
 {
     public partial class NewGameForm : Form
     {
-        
-
         private SnakeMainForm ownerForm;
         public NewGameForm(SnakeMainForm owner)
         {
@@ -25,8 +23,6 @@ namespace SnakeClassicGUI
 
         private void ConfigureFormControls()
         {
-           
-
             comboBoxTimeInterval.DataSource = new BindingSource(this.ownerForm.Speed, null);
             comboBoxTimeInterval.DisplayMember = "Value";
             comboBoxTimeInterval.ValueMember = "Key";
@@ -68,8 +64,8 @@ namespace SnakeClassicGUI
             bool includeSmoothGraphics;
             gatherFormInformation(out snakeTimeInterval, out fieldSize, out rows, out cols,out tooSmall,out includeBorderWalls,out includeSmoothGraphics);
 
-            int ownerFormSizeX = 30 + cols * fieldSize;
-            int ownerFormSizeY = 110 + rows * fieldSize;
+            int ownerFormSizeX = 30 + cols * fieldSize; 
+            int ownerFormSizeY = 85 + rows * fieldSize; //offset from the menuToolStrip and statusToolStrip
 
             ownerForm.ConfigureForm(ownerFormSizeX, ownerFormSizeY,tooSmall);
                      

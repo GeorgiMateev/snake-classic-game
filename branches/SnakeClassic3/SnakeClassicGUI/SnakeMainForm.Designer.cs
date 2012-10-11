@@ -43,10 +43,8 @@ namespace SnakeClassicGUI
             this.statusStripGameStatus = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelRunning = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelResult = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabelTurn = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelElapsedTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timerGameDuration = new System.Windows.Forms.Timer(this.components);
-            this.textBoxError = new System.Windows.Forms.TextBox();
             this.buttonNewGame = new System.Windows.Forms.Button();
             this.buttonOptions = new System.Windows.Forms.Button();
             this.buttonExit = new System.Windows.Forms.Button();
@@ -98,6 +96,7 @@ namespace SnakeClassicGUI
             // 
             // toolStripMainMenu
             // 
+            this.toolStripMainMenu.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripMainMenu.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripDropDownGame,
@@ -131,7 +130,6 @@ namespace SnakeClassicGUI
             this.statusStripGameStatus.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabelRunning,
             this.toolStripStatusLabelResult,
-            this.toolStripStatusLabelTurn,
             this.toolStripStatusLabelElapsedTime});
             this.statusStripGameStatus.Location = new System.Drawing.Point(0, 533);
             this.statusStripGameStatus.Name = "statusStripGameStatus";
@@ -154,12 +152,6 @@ namespace SnakeClassicGUI
             this.toolStripStatusLabelResult.Name = "toolStripStatusLabelResult";
             this.toolStripStatusLabelResult.Size = new System.Drawing.Size(0, 17);
             // 
-            // toolStripStatusLabelTurn
-            // 
-            this.toolStripStatusLabelTurn.Margin = new System.Windows.Forms.Padding(0, 3, 20, 2);
-            this.toolStripStatusLabelTurn.Name = "toolStripStatusLabelTurn";
-            this.toolStripStatusLabelTurn.Size = new System.Drawing.Size(0, 17);
-            // 
             // toolStripStatusLabelElapsedTime
             // 
             this.toolStripStatusLabelElapsedTime.Name = "toolStripStatusLabelElapsedTime";
@@ -169,17 +161,6 @@ namespace SnakeClassicGUI
             // 
             this.timerGameDuration.Interval = 1000;
             this.timerGameDuration.Tick += new System.EventHandler(this.timerGameDuration_Tick);
-            // 
-            // textBoxError
-            // 
-            this.textBoxError.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBoxError.Enabled = false;
-            this.textBoxError.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxError.Location = new System.Drawing.Point(0, 510);
-            this.textBoxError.Name = "textBoxError";
-            this.textBoxError.ReadOnly = true;
-            this.textBoxError.Size = new System.Drawing.Size(408, 23);
-            this.textBoxError.TabIndex = 11;
             // 
             // buttonNewGame
             // 
@@ -232,7 +213,6 @@ namespace SnakeClassicGUI
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.buttonOptions);
             this.Controls.Add(this.buttonNewGame);
-            this.Controls.Add(this.textBoxError);
             this.Controls.Add(this.statusStripGameStatus);
             this.Controls.Add(this.toolStripMainMenu);
             this.Cursor = System.Windows.Forms.Cursors.Default;
@@ -264,8 +244,6 @@ namespace SnakeClassicGUI
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelElapsedTime;
         public System.Windows.Forms.StatusStrip statusStripGameStatus;
         public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelResult;
-        public System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelTurn;
-        public System.Windows.Forms.TextBox textBoxError;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButtonOptions;
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuColors;
         public System.Windows.Forms.Button buttonNewGame;

@@ -167,7 +167,7 @@ namespace DataDealer
                         cellBorders.Value = (bool)resultsData["Borders"];
                         DataGridViewTextBoxCell cellDate = new DataGridViewTextBoxCell();
                         DateTime onlyDate = (DateTime)resultsData["CreatedOn"];
-                        cellDate.Value = onlyDate.Date;
+                        cellDate.Value = onlyDate.Date.ToShortDateString();
 
                         row.Cells.Add(cellScore);
                         row.Cells.Add(cellOwner);
@@ -180,7 +180,7 @@ namespace DataDealer
                         dataGridView.Rows.Add(row);
                     }
                 }
-            }
+            }           
         }
         public static void DisplayResults(DataGridView dataGridView,int numberResults)
         {
@@ -214,7 +214,7 @@ namespace DataDealer
                         cellBorders.Value = (bool)resultsData["Borders"];
                         DataGridViewTextBoxCell cellDate = new DataGridViewTextBoxCell();
                         DateTime onlyDate = (DateTime)resultsData["CreatedOn"];
-                        cellDate.Value = onlyDate.Date;
+                        cellDate.Value = onlyDate.Date.ToShortDateString();
 
                         row.Cells.Add(cellScore);
                         row.Cells.Add(cellOwner);

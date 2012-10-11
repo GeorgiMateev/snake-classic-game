@@ -120,7 +120,6 @@ namespace SnakeClassicGUI
             fieldSize.Add(2, "20X35");
             fieldSize.Add(3, "15X25");
         }
-
         
         public void CreateGraphic(Form givenForm,int cols,int rows,int pixelSize,int snakeTimeInterval,bool includeSmoothGraphics)
         {
@@ -131,13 +130,13 @@ namespace SnakeClassicGUI
 
         public void theSnake_RunChange(object sender, SnakeRunningEventArgs e)
         {
-
             toolStripStatusLabelRunning.Text = e.Status ;
         }
 
         public void form_LostFocus(object sender, EventArgs e)
         {
             this.TheSnake.SnakeTimer.Stop();
+            this.timerGameDuration.Stop();
             this.toolStripStatusLabelRunning.Text = "Stopped";
         }
 
@@ -152,24 +151,22 @@ namespace SnakeClassicGUI
         }
 
         public void newGameToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-           
+        {           
             this.NewGameForm = new NewGameForm(this);
             this.NewGameForm.ShowDialog();               
         }
 
         internal void ConfigureForm(int ownerFormSizeX, int ownerFormSizeY,bool tooSmall)
         {
+            this.Width = ownerFormSizeX;
+            this.Height = ownerFormSizeY;
+
             if (tooSmall)
             {
-                this.Width = ownerFormSizeX + 120;
-                this.Height = ownerFormSizeY;
+                this.toolStripStatusLabelRunning.Margin = new Padding(0,3,10,2);
+                this.toolStripStatusLabelResult.Margin = new Padding(0,3,10,2);
             }
-            else
-            {
-                this.Width = ownerFormSizeX;
-                this.Height = ownerFormSizeY;
-            }
+            
             this.DesktopLocation = new Point(5, 5);
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
             this.BackgroundImage = null;
@@ -185,13 +182,13 @@ namespace SnakeClassicGUI
 
         internal void StartOrStopGameDurationTimer()
         {
-            if (this.timerGameDuration.Enabled==false)
+            if(this.timerGameDuration.Enabled)
             {
-                this.timerGameDuration.Enabled = true;
+                this.timerGameDuration.Stop();
             }
             else
             {
-                this.timerGameDuration.Enabled = false;
+                this.timerGameDuration.Start(); 
             }
         }
         private void timerGameDuration_Tick(object sender, EventArgs e)
@@ -199,8 +196,6 @@ namespace SnakeClassicGUI
             elapsedTime = elapsedTime.AddSeconds(1);
             toolStripStatusLabelResult.Text = "";
             toolStripStatusLabelResult.Text = "Snake Lenght: " + TheSnake.SnakeBody.Count;
-            toolStripStatusLabelTurn.Text = "";
-            toolStripStatusLabelTurn.Text = "Changed direction: " + TheSnake.ChangedDirectionCount;
             toolStripStatusLabelElapsedTime.Text = "Time: " + elapsedTime.ToLongTimeString();
            
         }
@@ -212,8 +207,7 @@ namespace SnakeClassicGUI
 
         public void SnakeMainForm_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
         {
-            this.gamePlatformGraphic.RePaintPlatform(this.gamePlatform.Matrix);         
-       
+            this.gamePlatformGraphic.RePaintPlatform(this.gamePlatform.Matrix);      
         }       
 
         private void toolStripButtonClose_Click(object sender, EventArgs e)
@@ -238,6 +232,5 @@ namespace SnakeClassicGUI
             resultsForm.Show();
         }
 
-      
     }
 }
