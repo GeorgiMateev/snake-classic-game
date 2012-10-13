@@ -38,6 +38,7 @@
             this.buttonRestoreDefault = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBoxSampleColors = new System.Windows.Forms.PictureBox();
+            this.buttonChangeSnakeHeadColor = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSampleColors)).BeginInit();
             this.SuspendLayout();
@@ -48,7 +49,7 @@
             this.buttonEmptyFieldColor.Name = "buttonEmptyFieldColor";
             this.buttonEmptyFieldColor.Size = new System.Drawing.Size(75, 23);
             this.buttonEmptyFieldColor.TabIndex = 0;
-            this.buttonEmptyFieldColor.Text = "Empty Field";
+            this.buttonEmptyFieldColor.Text = "Empty field";
             this.buttonEmptyFieldColor.UseVisualStyleBackColor = true;
             this.buttonEmptyFieldColor.Click += new System.EventHandler(this.buttonChangeEFieldColor_Click);
             // 
@@ -64,7 +65,7 @@
             // 
             // buttonFoodColor
             // 
-            this.buttonFoodColor.Location = new System.Drawing.Point(7, 84);
+            this.buttonFoodColor.Location = new System.Drawing.Point(7, 113);
             this.buttonFoodColor.Name = "buttonFoodColor";
             this.buttonFoodColor.Size = new System.Drawing.Size(75, 23);
             this.buttonFoodColor.TabIndex = 2;
@@ -74,7 +75,7 @@
             // 
             // buttonWallColor
             // 
-            this.buttonWallColor.Location = new System.Drawing.Point(7, 113);
+            this.buttonWallColor.Location = new System.Drawing.Point(7, 142);
             this.buttonWallColor.Name = "buttonWallColor";
             this.buttonWallColor.Size = new System.Drawing.Size(75, 23);
             this.buttonWallColor.TabIndex = 3;
@@ -84,9 +85,9 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(276, 77);
+            this.buttonSave.Location = new System.Drawing.Point(276, 118);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(100, 42);
+            this.buttonSave.Size = new System.Drawing.Size(100, 32);
             this.buttonSave.TabIndex = 4;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -94,7 +95,7 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(276, 135);
+            this.buttonCancel.Location = new System.Drawing.Point(276, 156);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(100, 33);
             this.buttonCancel.TabIndex = 5;
@@ -104,9 +105,9 @@
             // 
             // buttonRestoreDefault
             // 
-            this.buttonRestoreDefault.Location = new System.Drawing.Point(276, 21);
+            this.buttonRestoreDefault.Location = new System.Drawing.Point(276, 12);
             this.buttonRestoreDefault.Name = "buttonRestoreDefault";
-            this.buttonRestoreDefault.Size = new System.Drawing.Size(100, 23);
+            this.buttonRestoreDefault.Size = new System.Drawing.Size(100, 30);
             this.buttonRestoreDefault.TabIndex = 6;
             this.buttonRestoreDefault.Text = "Restore Default";
             this.buttonRestoreDefault.UseVisualStyleBackColor = true;
@@ -114,6 +115,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.buttonChangeSnakeHeadColor);
             this.groupBox1.Controls.Add(this.pictureBoxSampleColors);
             this.groupBox1.Controls.Add(this.buttonWallColor);
             this.groupBox1.Controls.Add(this.buttonFoodColor);
@@ -121,7 +123,7 @@
             this.groupBox1.Controls.Add(this.buttonEmptyFieldColor);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(244, 156);
+            this.groupBox1.Size = new System.Drawing.Size(244, 177);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Change the Color of:";
@@ -130,15 +132,25 @@
             // 
             this.pictureBoxSampleColors.Location = new System.Drawing.Point(98, 26);
             this.pictureBoxSampleColors.Name = "pictureBoxSampleColors";
-            this.pictureBoxSampleColors.Size = new System.Drawing.Size(127, 110);
+            this.pictureBoxSampleColors.Size = new System.Drawing.Size(127, 139);
             this.pictureBoxSampleColors.TabIndex = 4;
             this.pictureBoxSampleColors.TabStop = false;
+            // 
+            // buttonChangeSnakeHeadColor
+            // 
+            this.buttonChangeSnakeHeadColor.Location = new System.Drawing.Point(7, 84);
+            this.buttonChangeSnakeHeadColor.Name = "buttonChangeSnakeHeadColor";
+            this.buttonChangeSnakeHeadColor.Size = new System.Drawing.Size(75, 23);
+            this.buttonChangeSnakeHeadColor.TabIndex = 5;
+            this.buttonChangeSnakeHeadColor.Text = "Snake head";
+            this.buttonChangeSnakeHeadColor.UseVisualStyleBackColor = true;
+            this.buttonChangeSnakeHeadColor.Click += new System.EventHandler(this.buttonChangeSnakeHeadColor_Click);
             // 
             // FormColors
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(388, 191);
+            this.ClientSize = new System.Drawing.Size(388, 204);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonRestoreDefault);
             this.Controls.Add(this.buttonCancel);
@@ -163,5 +175,6 @@
         private System.Windows.Forms.Button buttonRestoreDefault;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox pictureBoxSampleColors;
+        private System.Windows.Forms.Button buttonChangeSnakeHeadColor;
     }
 }

@@ -87,16 +87,24 @@ namespace SnakeClassicGUI
                 (ownerForm.GamePlatformGraphic.EmptyField_EmptyFieldCreated);
             SnakeField.SnakeFieldCreated -= new SnakeField.SnakeFieldCreateEventHandler
                 (ownerForm.GamePlatformGraphic.SnakeField_SnakeFieldCreated);
+            SnakeFieldHead.SnakeFieldHeadCreated -= new SnakeFieldHead.SnakeFieldHeadCreateEventArgs
+                (ownerForm.GamePlatformGraphic.SnakeFieldHead_SnakeFieldHeadCreated);
             FoodField.FoodFieldCreated -= new FoodField.FoodFieldCreateEventHandler
                 (ownerForm.GamePlatformGraphic.FoodField_FoodFieldCreated);
             WallField.WallFieldCreated -= new WallField.WallFieldCreateEventHandler
                 (ownerForm.GamePlatformGraphic.WallField_WallFieldCreated);
-            SnakeField.SnakeFieldSmoothCreation -= new SnakeField.SnakeFieldSmoothCreationEventHandler
-                (ownerForm.GamePlatformGraphic.SnakeField_SnakeFieldSmoothCreation);
+
+            //SnakeField.SnakeFieldSmoothCreation -= new SnakeField.SnakeFieldSmoothCreationEventHandler
+            //    (ownerForm.GamePlatformGraphic.SnakeField_SnakeFieldSmoothCreation);
+            SnakeFieldHead.SnakeFieldHeadSmoothCreation -= new SnakeFieldHead.SnakeFieldHeadSmoothCreationEventHandler
+                (ownerForm.GamePlatformGraphic.SnakeFieldHead_SnakeFieldHeadSmoothCreation);
             EmptyField.EmptyFieldSmoothCreation -= new EmptyField.EmptyFieldSmoothCreationEventHandler
                 (ownerForm.GamePlatformGraphic.EmptyField_EmptyFieldSmoothCreation);
-            SnakeField.SnakeFieldSmoothCreation -= new SnakeField.SnakeFieldSmoothCreationEventHandler
-                (ownerForm.GamePlatformGraphic.SnakeField_SnakeFieldCreated);
+
+            //SnakeField.SnakeFieldSmoothCreation -= new SnakeField.SnakeFieldSmoothCreationEventHandler
+            //    (ownerForm.GamePlatformGraphic.SnakeField_SnakeFieldCreated);
+            SnakeFieldHead.SnakeFieldHeadSmoothCreation -= new SnakeFieldHead.SnakeFieldHeadSmoothCreationEventHandler
+                (ownerForm.GamePlatformGraphic.SnakeFieldHead_SnakeFieldHeadCreated);
             EmptyField.EmptyFieldSmoothCreation -= new EmptyField.EmptyFieldSmoothCreationEventHandler
                 (ownerForm.GamePlatformGraphic.EmptyField_EmptyFieldCreated);
             this.ownerForm.Paint -= new System.Windows.Forms.PaintEventHandler(this.ownerForm.SnakeMainForm_Paint);
