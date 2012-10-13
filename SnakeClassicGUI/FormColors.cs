@@ -29,21 +29,25 @@ namespace SnakeClassicGUI
         {
             Graphics sampleColors = pictureBoxSampleColors.CreateGraphics();
 
-            Brush emptyFieldBr =new SolidBrush( SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentEmptyFieldColor);
+            Brush emptyFieldBr = new SolidBrush( SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentEmptyFieldColor);
             sampleColors.FillRectangle(emptyFieldBr, 0, 2, 120, 20);
 
             Brush snakeBr = new SolidBrush(SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor);
             sampleColors.FillRectangle(snakeBr, 0,30,120,20);
 
+            Brush snakeHeadBr = new SolidBrush(SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentSnakeHeadFieldColor);
+            sampleColors.FillRectangle(snakeHeadBr, 0, 60, 120, 20);
+
             Brush foodBr = new SolidBrush(SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentFoodFieldColor);
-            sampleColors.FillRectangle(foodBr, 0, 60, 120, 20);
+            sampleColors.FillRectangle(foodBr, 0, 90, 120, 20);
 
             Brush wallBr = new SolidBrush(SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentWallFieldColor);
-            sampleColors.FillRectangle(wallBr, 0, 90, 120, 20);
+            sampleColors.FillRectangle(wallBr, 0, 120, 120, 20);
 
             emptyFieldBr.Dispose();
             wallBr.Dispose();
             snakeBr.Dispose();
+            snakeHeadBr.Dispose();
             foodBr.Dispose();
             sampleColors.Dispose();
         }
@@ -58,6 +62,13 @@ namespace SnakeClassicGUI
         {
             colorDialogGraphic.ShowDialog();
             SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor = colorDialogGraphic.Color;
+            this.Invalidate();
+        }
+
+        private void buttonChangeSnakeHeadColor_Click(object sender, EventArgs e)
+        {
+            colorDialogGraphic.ShowDialog();
+            SnakeGraphicEngine.Properties.GraphicColorSettings.Default.CurrentSnakeHeadFieldColor = colorDialogGraphic.Color;
             this.Invalidate();
         }
 
@@ -101,6 +112,6 @@ namespace SnakeClassicGUI
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
+        }       
     }
 }

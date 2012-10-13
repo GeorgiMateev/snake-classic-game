@@ -193,29 +193,64 @@ namespace SnakeClassLib
         public delegate void SnakeFieldSmoothCreationEventHandler(SnakeField sender);
         public static event SnakeFieldSmoothCreationEventHandler SnakeFieldSmoothCreation;
 
-        public SnakeField(int row, int col,Directions drawDirection)
+        public DrawMethods DrawMethod { get; set; }
+
+        public SnakeField(int row, int col,Directions drawDirection, DrawMethods drawMethod)
             : base(row, col,drawDirection)
         {
             this.Row = row;
             this.Col = col;
             this.DrawDirection = drawDirection;
+            this.DrawMethod = drawMethod;
 
-            this.CallSmoothCreationEvent();
+            this.CallCreateEvent();
         }
 
-        public void CallSmoothCreationEvent()
-        {
-            if (SnakeFieldSmoothCreation !=null)
-            {
-                SnakeFieldSmoothCreation(this);
-            }
-        }
+        //public void CallSmoothCreationEvent()
+        //{
+        //    if (SnakeFieldSmoothCreation !=null)
+        //    {
+        //        SnakeFieldSmoothCreation(this);
+        //    }
+        //}
 
         public void CallCreateEvent()
         {
             if (SnakeFieldCreated != null)
             {
                 SnakeFieldCreated(this);
+            }
+        }
+    }
+    public class SnakeFieldHead : Field
+    {
+        public delegate void SnakeFieldHeadCreateEventArgs(SnakeFieldHead sender);
+        public static event SnakeFieldHeadCreateEventArgs SnakeFieldHeadCreated;
+
+        public delegate void SnakeFieldHeadSmoothCreationEventHandler(SnakeFieldHead sender);
+        public static event SnakeFieldHeadSmoothCreationEventHandler SnakeFieldHeadSmoothCreation;
+
+        public SnakeFieldHead(int row, int col, Directions drawDirection)
+            : base(row, col, drawDirection)
+        {
+            this.Row = row;
+            this.Col = col;
+            this.CallSmoothCreationEvent();
+        }
+
+        public void CallCreateEvent()
+        {
+            if (SnakeFieldHeadCreated != null)
+            {
+                SnakeFieldHeadCreated(this);
+            }
+        }
+
+        public void CallSmoothCreationEvent()
+        {
+            if (SnakeFieldHeadSmoothCreation != null)
+            {
+                SnakeFieldHeadSmoothCreation(this);
             }
         }
     }
@@ -259,6 +294,7 @@ namespace SnakeClassLib
             }
         }
     }
+    
 }
 
 

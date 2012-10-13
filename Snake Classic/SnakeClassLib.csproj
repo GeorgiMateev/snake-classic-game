@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="GameMatrix.cs" />
     <Compile Include="Snake.cs" />
+    <Compile Include="DrawMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

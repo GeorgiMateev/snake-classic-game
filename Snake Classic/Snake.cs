@@ -102,15 +102,16 @@ namespace SnakeClassLib
         }
 
         public void CreateBasicSnake()
-        {
-            
+        {            
             this.SnakeBody.Add
-                (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum, gamePlatform.Matrix, this,Directions.Left));
+                (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum, gamePlatform.Matrix, this,Directions.Left, false));
             for (int i = 1; i < 5; i++)
             {
                 this.SnakeBody.Add
-                    (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum - i, gamePlatform.Matrix, this,this.snakeBody[snakeBody.Count-1].DrawDirection));
+                    (new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum - i, gamePlatform.Matrix, this,this.snakeBody[snakeBody.Count-1].DrawDirection, false));
             }
+            this.SnakeBody.Add(
+                new SnakeFragment(gamePlatform.MiddleRow, gamePlatform.MiddleColum - 5, gamePlatform.Matrix, this, snakeBody[snakeBody.Count - 1].DrawDirection, true));
             this.SetHeadFragment();
         }
         public void SetHeadFragment()
@@ -246,7 +247,7 @@ namespace SnakeClassLib
         private void OnlyMove(Field directionField)
         {
             this.snakeBody.Add
-                (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this,this.Direction));
+                (new SnakeFragment(directionField.Row,directionField.Col,gamePlatform.Matrix,this,this.Direction, true));
             this.SetHeadFragment();
            
             EmptyUsedField();
@@ -255,7 +256,7 @@ namespace SnakeClassLib
         private void IncreaseSnake(Field directionField)
         {
             this.snakeBody.Add
-                (new SnakeFragment(directionField.Row, directionField.Col, gamePlatform.Matrix, this,this.Direction));
+                (new SnakeFragment(directionField.Row, directionField.Col, gamePlatform.Matrix, this,this.Direction, true));
             this.SetHeadFragment();
             
         }
@@ -307,20 +308,25 @@ namespace SnakeClassLib
             set { col = value; }
         }
         
-        public SnakeFragment(int row, int col,Field[,] currentMatrix,Snake currentSnake,Directions drawDirection)
+        public SnakeFragment(int row, int col,Field[,] currentMatrix,Snake currentSnake,Directions drawDirection, bool isHead)
         {
             this.Row = row;
             this.Col = col;
-            this.drawDirection = drawDirection;
-           
-            PutIntoMatrix(this.Row, this.Col, currentMatrix,drawDirection);
-        }        
+            this.DrawDirection = drawDirection;
 
-        private void PutIntoMatrix(int row, int col, Field[,] currentMatrix,Directions drawDirection)
-        {
-            currentMatrix[row, col] = new SnakeField(row,col,drawDirection);
+            if (isHead)
+            {
+                currentMatrix[row, col] = new SnakeFieldHead(row, col, drawDirection);
+                if (currentSnake.SnakeBody.Count >= 1)
+                {
+                    SnakeFragment oldHead = currentSnake.SnakeBody[currentSnake.SnakeBody.Count - 1];
+                    currentMatrix[row, col] = new SnakeField(oldHead.Row, oldHead.Col, oldHead.drawDirection, DrawMethods.Normal);
+                }
+            }
+            else
+            {
+                currentMatrix[row, col] = new SnakeField(row, col, drawDirection, DrawMethods.Smooth);
+            }            
         }
-
-        
     }
 }

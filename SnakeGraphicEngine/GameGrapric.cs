@@ -51,25 +51,41 @@ namespace SnakeGraphicEngine
             this.matrixGraphic = this.currentForm.CreateGraphics();        
             
             SnakeField.SnakeFieldCreated += new SnakeField.SnakeFieldCreateEventHandler(SnakeField_SnakeFieldCreated);
+            SnakeFieldHead.SnakeFieldHeadCreated += new SnakeFieldHead.SnakeFieldHeadCreateEventArgs(SnakeFieldHead_SnakeFieldHeadCreated);
             FoodField.FoodFieldCreated += new FoodField.FoodFieldCreateEventHandler(FoodField_FoodFieldCreated);
             EmptyField.EmptyFieldCreated += new EmptyField.EmptyFieldCreateEventHandler(EmptyField_EmptyFieldCreated);
             WallField.WallFieldCreated += new WallField.WallFieldCreateEventHandler(WallField_WallFieldCreated);
 
             if (includeSmoothGraphic)
             {
-                SnakeField.SnakeFieldSmoothCreation += new SnakeField.SnakeFieldSmoothCreationEventHandler
-                    (SnakeField_SnakeFieldSmoothCreation);
+                //SnakeField.SnakeFieldSmoothCreation += new SnakeField.SnakeFieldSmoothCreationEventHandler
+                //    (SnakeField_SnakeFieldSmoothCreation);
+                SnakeFieldHead.SnakeFieldHeadSmoothCreation += new SnakeFieldHead.SnakeFieldHeadSmoothCreationEventHandler
+                    (SnakeFieldHead_SnakeFieldHeadSmoothCreation);
                 EmptyField.EmptyFieldSmoothCreation += new EmptyField.EmptyFieldSmoothCreationEventHandler
                     (EmptyField_EmptyFieldSmoothCreation);
             }
             else
             {
-                SnakeField.SnakeFieldSmoothCreation += new SnakeField.SnakeFieldSmoothCreationEventHandler
-                    (SnakeField_SnakeFieldCreated);
+                //SnakeField.SnakeFieldSmoothCreation += new SnakeField.SnakeFieldSmoothCreationEventHandler
+                //    (SnakeField_SnakeFieldCreated);
+                SnakeFieldHead.SnakeFieldHeadSmoothCreation += new SnakeFieldHead.SnakeFieldHeadSmoothCreationEventHandler
+                    (SnakeFieldHead_SnakeFieldHeadCreated);
                 EmptyField.EmptyFieldSmoothCreation += new EmptyField.EmptyFieldSmoothCreationEventHandler
                     (EmptyField_EmptyFieldCreated);
             }
         }
+
+        public void SnakeFieldHead_SnakeFieldHeadSmoothCreation(SnakeFieldHead sender)
+        {
+            Brush snakeHeadBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentSnakeHeadFieldColor);
+
+            int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
+            int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
+            this.matrixGraphic.SmoothFillRectangleMultithreading
+                (snakeHeadBrush, new Point(snakeFieldX, snakeFieldY), new Size(this.fieldSize, this.fieldSize), directionsDict[sender.DrawDirection], this.timeInterval);
+            snakeHeadBrush.Dispose();
+        }       
 
         public void EmptyField_EmptyFieldSmoothCreation(EmptyField sender)
         {
@@ -83,17 +99,15 @@ namespace SnakeGraphicEngine
             EmptyFieldBrush.Dispose();
         }
 
-        public void SnakeField_SnakeFieldSmoothCreation(SnakeField sender)
-        {
-            Brush snakeFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor);
-            int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
-            int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
-            this.matrixGraphic.SmoothFillRectangleMultithreading
-                (snakeFieldBrush, new Point(snakeFieldX, snakeFieldY), new Size(this.fieldSize, this.fieldSize), directionsDict[sender.DrawDirection], this.timeInterval);
-            snakeFieldBrush.Dispose();
-        }    
-
-       
+        //public void SnakeField_SnakeFieldSmoothCreation(SnakeField sender)
+        //{
+        //    Brush snakeFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor);
+        //    int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
+        //    int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
+        //    this.matrixGraphic.SmoothFillRectangleMultithreading
+        //        (snakeFieldBrush, new Point(snakeFieldX, snakeFieldY), new Size(this.fieldSize, this.fieldSize), directionsDict[sender.DrawDirection], this.timeInterval);
+        //    snakeFieldBrush.Dispose();
+        //}
 
         public void WallField_WallFieldCreated(WallField sender)
         {
@@ -113,13 +127,36 @@ namespace SnakeGraphicEngine
             snakeFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentSnakeFieldColor);
             int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
             int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
+
+            if (this.includeSmoothGraphic)
+            {
+                this.matrixGraphic.SmoothFillRectangleMultithreading
+                (snakeFieldBrush, new Point(snakeFieldX, snakeFieldY),
+                new Size(this.fieldSize, this.fieldSize), directionsDict[sender.DrawDirection], this.timeInterval);
+            }
+            else
+            {
+                lock (this.matrixGraphic)
+                {
+                    this.matrixGraphic.FillRectangle
+                        (snakeFieldBrush, snakeFieldX, snakeFieldY, this.fieldSize, this.fieldSize);
+                }
+            }
+            
+            snakeFieldBrush.Dispose();
+        }
+        public void SnakeFieldHead_SnakeFieldHeadCreated(SnakeFieldHead sender)
+        {
+            Brush snakeHeadBrush = new SolidBrush(Properties.GraphicColorSettings.Default.DefaultSnakeHeadFieldColor);
+            int snakeFieldX = graphicLocationX + sender.Col * this.fieldSize;
+            int snakeFieldY = graphicLocationY + sender.Row * this.fieldSize;
             lock (this.matrixGraphic)
             {
                 this.matrixGraphic.FillRectangle
-                    (snakeFieldBrush, snakeFieldX, snakeFieldY, this.fieldSize, this.fieldSize);
+                    (snakeHeadBrush, snakeFieldX, snakeFieldY, this.fieldSize, this.fieldSize);
             }
-            snakeFieldBrush.Dispose();
-        }      
+            snakeHeadBrush.Dispose();
+        }
         public void FoodField_FoodFieldCreated(FoodField sender)
         {
             Brush FoodFieldBrush = new SolidBrush(Properties.GraphicColorSettings.Default.CurrentFoodFieldColor);
@@ -158,6 +195,11 @@ namespace SnakeGraphicEngine
                 if (item is SnakeField)
                 {
                     SnakeField unpackedItem = (SnakeField)item;
+                    unpackedItem.CallCreateEvent();
+                }
+                if (item is SnakeFieldHead)
+                {
+                    SnakeFieldHead unpackedItem = (SnakeFieldHead)item;
                     unpackedItem.CallCreateEvent();
                 }
                 if (item is FoodField)
