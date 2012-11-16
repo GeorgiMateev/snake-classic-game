@@ -84,8 +84,8 @@ namespace SnakeClassicGUI
             ownerForm.LostFocus += new EventHandler(ownerForm.form_LostFocus);
           
 
-            ownerForm.newGameToolStripMenuItem.Enabled = false;
-            ownerForm.surrenderToolStripMenuItem.Enabled = true;
+            ownerForm.newGameToolStripMenuItem.Visible = false;
+            ownerForm.surrenderToolStripMenuItem.Visible = true;
             ownerForm.ElapsedTime = new DateTime(1,1,1,0,0,0);
 
             if (checkBoxDefGameOptions.Checked)

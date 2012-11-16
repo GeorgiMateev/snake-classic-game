@@ -231,6 +231,5 @@ namespace SnakeClassicGUI
             ResultForm resultsForm = new ResultForm();
             resultsForm.Show();
         }
-
     }
 }

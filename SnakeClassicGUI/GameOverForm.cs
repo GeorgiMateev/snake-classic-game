@@ -64,8 +64,8 @@ namespace SnakeClassicGUI
             this.ownerForm.StartPosition = FormStartPosition.CenterScreen;
             this.ownerForm.Width = 418;
             this.ownerForm.Height = 587;
-            this.ownerForm.newGameToolStripMenuItem.Enabled = true;
-            this.ownerForm.surrenderToolStripMenuItem.Enabled = false;
+            this.ownerForm.newGameToolStripMenuItem.Visible = true;
+            this.ownerForm.surrenderToolStripMenuItem.Visible = false;
             this.ownerForm.toolStripStatusLabelRunning.Text = "Ready";
             this.ownerForm.toolStripStatusLabelElapsedTime.Text = "";
             this.ownerForm.toolStripStatusLabelResult.Text = "";
