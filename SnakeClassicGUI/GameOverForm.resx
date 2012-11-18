@@ -117,50 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="Score.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Owner.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="SnakeLenght.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Speed.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FieldSize.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Borders.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Date.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="buttonScoreInfo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAZdEVYdFNvZnR3YXJlAEFkb2JlIEltYWdlUmVhZHlxyWU8AAADrUlEQVQ4T22UbWxTVRjHb7vb
-        sra3K31lb90oQ/2gIuCggy3M7qWlXdeN4bK4EZSPSoQoG+AC6ESsTMj4ooQQI2FGkkUS0ETdF/2CLHEJ
-        BIyOF3VgIsRpxpzr7vv9+5yuaXRwkl/OuSfP8zsv95zDcYvK8o5vIxU7bp5ZsWvqZtXeuemqvrnp0M6p
-        W+XbJz4JJi4mKNxKmBbn5b+DsfPO0p4bw6F9ilZ/DNg8BCROAA2DQOQoUJcGgrsUo7jrh5Glj28ro0T+
-        IVl59LyzeNtvlzYcAVKU3H7CIHS0D+no+9TAiyd1tAzqSL6vo7rfgKdrclyoSKwgkeV/suL2ieHwgIEt
-        lNh2nDimI5bW0X/OACtXJg00H9aQfFdDC/H0Hg2+2LULJPHnZ1be9M0m3w7RYMltgxpSR3W0vqchfkRD
-        z5CGyzcMnBrVER0g0TskIuJvqxA6JfieSm8nkSu7Z/7oT2dr+nWk0iQhWknQQqOnqN55SkP3cRUb96qo
-        36+iZo+K6t0q1r6qorJbhWv9+Bckqcz+ACHxx+3GQyQ4rCJJIyUHVCTeUtH7kYZf7xuYzQDxgyqKOhR4
-        O4nnFXi2KnDFVFgeu3+HJKsIgbPHH8xED2hIHFKQfJMkBxWEdytwU/DgiJ7do/2nNRREZXjaqD8lw90q
-        w9mswFw8/TdJagg3V9j0YKaZpp08oCDSqyDUo8DZqsAelzH248Jmd9IAlgYZSxMyXNTv2ixBeE6G2fMX
-        E9URXs5Re+/nCK09/IoCXxuNRIEsKblPyUom7xkIJGXYGyU4mwhWN0iwrZPBu36/mxd5Vl87V7FFRlFM
-        htAsoYgw1UoY/lrLit74UAVXLUKol+CoF+HYJMJeJ8KyUkThsrGv8kvzPjES42z/GHYKFCISWG2tFXH9
-        9sL+rO6WYAmLsG0kNlByzTyWrBfBcbMQSl97nUTPEE52MK32kqufWYK5YEowrRHxwYiaFX38uYZQXETB
-        GhI8Ow8L1QUlGRT6x0Ypt5FYnrt/nMkReKFsifvWOF9GU167EOwIzyP+soR1XSL4VZks5ieJZXOwFE1c
-        5+0rt+Zms3Agc4W3e5JV9sD3FzjzrMEH58GFMuCCRGUGJmqbS6ltmkWh77tR3lbVQXnVRCB/Rf5z6dgF
-        9DtL0i/Z/Jcv8o67v5itUzNm658zvOPOpM176UtHoK83txx2CJmEPSmPLOxpYFNlx54Fh4naHKzN+tie
-        sJiHn5FFSrZeNpJAuAlvDtZmfY982P4FargeXOMD1jgAAAAASUVORK5CYII=
-</value>
-  </data>
   <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

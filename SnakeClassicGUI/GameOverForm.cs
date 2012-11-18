@@ -44,7 +44,7 @@ namespace SnakeClassicGUI
             this.labelSpeed.Text = ownerForm.Speed[ownerForm.TheSnake.SnakeTimer.Interval]+"F/Sec";
             this.labelField.Text = ownerForm.GamePlatform.Rows + " X " + ownerForm.GamePlatform.Colums;
             this.labelScore.Text = this.GameScore.ToString();
-            this.textBoxPlayerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
+            this.playerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
 
             //this.buttonNewGame.Click += new EventHandler(buttonClose_Click);
             //this.buttonNewGame.Click += new EventHandler(this.ownerForm.newGameToolStripMenuItem_Click);
@@ -53,8 +53,6 @@ namespace SnakeClassicGUI
                 ownerForm.FieldSize[ownerForm.FieldSizeIndex], ownerForm.IncludeBorderIndex);
             DisplayPlace();
 
-            Result.DisplayResults(dataGridViewResult, 5);
-            labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
         }
 
         
@@ -121,7 +119,6 @@ namespace SnakeClassicGUI
                  buttonSaveResult.Enabled = false;
                  buttonChangeName.Enabled = false;
             }            
-            Result.DisplayResults(dataGridViewResult,5);
         }
 
         private void DisplayPlace()
@@ -146,75 +143,6 @@ namespace SnakeClassicGUI
             }
         }
 
-        private void buttonShowTopResult_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string textBoxText = textBoxResultNumber.Text;
-                int textBoxNumber = 0;
-                if (!int.TryParse(textBoxText, out textBoxNumber))
-                {
-                    throw new FormatException("Enter only numbers");
-                }
-                if (textBoxNumber <= 0)
-                {
-                    throw new ArgumentOutOfRangeException("Enter numbers greater than zero!");
-                }
-                Result.DisplayResults(dataGridViewResult, textBoxNumber);
-            }
-           
-            catch (FormatException err)
-            {
-                toolStripStatusLabel.Text = err.Message;
-            }
-            catch (ArgumentOutOfRangeException err)
-            {
-                toolStripStatusLabel.Text = err.Message;
-            }
-        }
-
-        private void buttonDeteFrom_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string textBoxText = textBoxDeleteFrom.Text;
-                int textBoxNumber = 0;
-                if (!int.TryParse(textBoxText, out textBoxNumber))
-                {
-                    throw new FormatException("Enter only numbers");
-                }
-                if (textBoxNumber < 0)
-                {
-                    throw new ArgumentOutOfRangeException("Enter numbers greater than ot equal to zero!");
-                }
-                Result.DeleteFrom(textBoxNumber);
-                Result.DisplayResults(dataGridViewResult, 5);
-                labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
-            }
-            catch (FormatException err)
-            {
-                toolStripStatusLabel.Text = err.Message;
-            }
-            catch (ArgumentOutOfRangeException err)
-            {
-                toolStripStatusLabel.Text = err.Message;
-            }
-        }
-
-        private void buttonDeleteAll_Click(object sender, EventArgs e)
-        {
-            MessageBoxButtons deleteDialog = MessageBoxButtons.YesNo;
-            DialogResult result = MessageBox.Show("Delete all records?", "Delete records", deleteDialog, MessageBoxIcon.Warning);
-            if (result==DialogResult.Yes)
-            {
-                Result.DeleteFrom(0);
-                toolStripStatusLabel.Text = "All records deleted!";
-            }
-            Result.DisplayResults(dataGridViewResult, 5);
-            
-            labelAllRecNumber.Text = "All records:" + Result.AllRecordsNumber().ToString();
-        }
-
         private void buttonChangeName_Click(object sender, EventArgs e)
         {
             FormGetName getPlayerName = new FormGetName();
@@ -223,24 +151,9 @@ namespace SnakeClassicGUI
             {
                 SnakeClassicGUI.Properties.Game.Default.PlayerName = getPlayerName.GetName;
             }
-            textBoxPlayerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
+            playerName.Text = SnakeClassicGUI.Properties.Game.Default.PlayerName;
         }
-
-        private void buttonShowAll_Click(object sender, EventArgs e)
-        {
-            Result.DisplayResults(dataGridViewResult);
-        }
-
-        private void buttonScoreInfo_MouseHover(object sender, EventArgs e)
-        {
-            this.textBoxScoreFormula.Visible = true;
-        }
-
-        private void buttonScoreInfo_MouseLeave(object sender, EventArgs e)
-        {
-            this.textBoxScoreFormula.Visible = false;
-        }
-
+        
         private void buttonNewGame_Click(object sender, EventArgs e)
         {
             this.FormClosed += new FormClosedEventHandler(FormGameOver_FormClosed);
@@ -267,6 +180,12 @@ namespace SnakeClassicGUI
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();
-        }                         
+        }
+
+        private void buttonShowResults_Click(object sender, EventArgs e)
+        {
+            var resultForm = new ResultForm();
+            resultForm.ShowDialog();
+        }                 
     }
 }
